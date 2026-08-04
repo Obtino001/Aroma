@@ -4,90 +4,110 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>AROMASCENT — MY WAY Luxury Fragrance Oil</title>
-  <meta name="description" content="AROMASCENT MY WAY — a sophisticated blend of leather, sandalwood, and oud wood inspired by 1 Hotel®, Miami Beach. Buy on Amazon." />
+  <meta name="description" content="AROMASCENT MY WAY — a sophisticated blend of leather, sandalwood, and oud wood inspired by 1 Hotel®, Miami Beach. Premium fragrance oil for aroma diffusers." />
+  <meta name="theme-color" content="#F7F4EE" />
+
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;0,6..96,600;0,6..96,700;1,6..96,400;1,6..96,500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+
+  <!-- GSAP -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+
   <style>
+    /* ═══════════════════════════════════════════
+       DESIGN SYSTEM — AROMASCENT
+       ═══════════════════════════════════════════ */
     :root {
-      --ink: #12110f;
-      --ink-soft: #2a2824;
-      --sand: #e8e0d4;
-      --sand-deep: #d4c8b6;
-      --linen: #f6f2eb;
-      --mist: #faf8f5;
-      --champagne: #c4a574;
-      --champagne-bright: #d4b896;
-      --amazon: #ff9900;
-      --amazon-dark: #e47911;
-      --muted: #6b6560;
-      --line: rgba(18, 17, 15, 0.12);
-      --radius: 2px;
-      --ease: cubic-bezier(0.22, 1, 0.36, 1);
-      --font-display: "Cormorant Garamond", Georgia, serif;
-      --font-body: "Outfit", system-ui, sans-serif;
+      --ivory:       #F7F4EE;
+      --sand:        #EDE6DA;
+      --sand-deep:   #E2D9CC;
+      --cream:       #FAF8F5;
+      --ink:         #111111;
+      --ink-soft:    #2A2824;
+      --ink-medium:  #3D3A35;
+      --gold:        #C7A16A;
+      --gold-dim:    #B8956A;
+      --gold-bright: #D4B48A;
+      --muted:       #8A847D;
+      --line:        rgba(17,17,17,0.07);
+      --line-light:  rgba(255,255,255,0.08);
+
+      --font-serif:  'Bodoni Moda', 'Didot', 'Georgia', serif;
+      --font-sans:   'Inter', -apple-system, 'Helvetica Neue', sans-serif;
+
+      --ease:        cubic-bezier(0.22, 1, 0.36, 1);
+      --ease-out:    cubic-bezier(0.16, 1, 0.3, 1);
+      --ease-smooth: cubic-bezier(0.25, 0.46, 0.45, 0.94);
     }
 
+    /* ── Reset ── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     html {
       scroll-behavior: smooth;
-      width: 100%;
-      max-width: 100%;
       overflow-x: hidden;
+      -webkit-text-size-adjust: 100%;
     }
 
     body {
-      font-family: var(--font-body);
+      font-family: var(--font-sans);
       font-weight: 300;
+      font-size: 16px;
       color: var(--ink);
-      background: var(--mist);
-      line-height: 1.6;
-      width: 100%;
-      max-width: 100%;
+      background: var(--ivory);
+      line-height: 1.7;
       overflow-x: hidden;
       -webkit-font-smoothing: antialiased;
-    }
-
-    main {
-      display: block;
-      width: 100%;
-      max-width: 100%;
-      overflow-x: hidden;
+      -moz-osx-font-smoothing: grayscale;
     }
 
     img { max-width: 100%; height: auto; display: block; }
     a { color: inherit; text-decoration: none; }
     button { font: inherit; border: none; cursor: pointer; background: none; }
 
-    /* —— Ambient background —— */
+    /* ── Ambient Layers ── */
     .atmosphere {
       position: fixed;
       inset: 0;
-      z-index: -1;
+      z-index: -2;
       background:
-        radial-gradient(ellipse 80% 50% at 20% 10%, rgba(196, 165, 116, 0.18), transparent 55%),
-        radial-gradient(ellipse 60% 40% at 85% 20%, rgba(212, 200, 182, 0.35), transparent 50%),
-        radial-gradient(ellipse 70% 60% at 50% 100%, rgba(232, 224, 212, 0.55), transparent 60%),
-        linear-gradient(165deg, #faf8f5 0%, #f0ebe3 45%, #e8e0d4 100%);
-      animation: atmosphere-drift 18s ease-in-out infinite alternate;
-    }
-
-    @keyframes atmosphere-drift {
-      from { filter: hue-rotate(0deg) brightness(1); }
-      to { filter: hue-rotate(8deg) brightness(1.03); }
+        radial-gradient(ellipse 80% 50% at 20% 10%, rgba(199,161,106,0.08), transparent 55%),
+        radial-gradient(ellipse 60% 40% at 85% 20%, rgba(226,217,204,0.25), transparent 50%),
+        radial-gradient(ellipse 70% 60% at 50% 100%, rgba(237,230,218,0.4), transparent 60%),
+        linear-gradient(165deg, var(--cream) 0%, var(--ivory) 45%, var(--sand) 100%);
+      pointer-events: none;
     }
 
     .grain {
       position: fixed;
       inset: 0;
-      z-index: 9999;
+      z-index: 9998;
       pointer-events: none;
-      opacity: 0.035;
+      opacity: 0.028;
       background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
     }
 
-    /* —— Announce bar —— */
+    .vignette {
+      position: fixed;
+      inset: 0;
+      z-index: 9997;
+      pointer-events: none;
+      background: radial-gradient(ellipse at center, transparent 50%, rgba(17,17,17,0.04) 100%);
+    }
+
+    .cursor-glow {
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.6s;
+    }
+
+    /* ── Announcement Bar ── */
     .announce {
       position: fixed;
       top: 0;
@@ -98,135 +118,206 @@
       align-items: center;
       justify-content: center;
       gap: 1rem;
-      flex-wrap: wrap;
-      width: 100%;
-      padding: 0.55rem 1rem;
+      padding: 0.5rem 1rem;
       background: var(--ink);
-      color: #f7f3ec;
+      color: rgba(247,244,238,0.7);
     }
 
     .announce-text {
-      font-size: 0.62rem;
+      font-family: var(--font-sans);
+      font-size: 0.6rem;
       font-weight: 500;
-      letter-spacing: 0.18em;
+      letter-spacing: 0.2em;
       text-transform: uppercase;
-      color: rgba(247, 243, 236, 0.78);
     }
 
     .announce-text strong {
-      color: var(--champagne-bright);
+      color: var(--gold-bright);
       font-weight: 500;
     }
 
-    .announce .countdown {
-      gap: 0.3rem;
+    .announce .cd {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.25rem;
+      font-variant-numeric: tabular-nums;
     }
 
-    .announce .countdown-digit {
-      min-width: 1.55rem;
-      height: 1.55rem;
-      display: grid;
-      place-items: center;
+    .announce .cd-digit {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 1.5rem;
+      height: 1.5rem;
       padding: 0 0.15rem;
-      background: rgba(255, 255, 255, 0.08);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: 4px;
-      font-family: var(--font-body);
-      font-size: 0.78rem;
-      font-weight: 600;
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 3px;
+      font-family: var(--font-sans);
+      font-size: 0.72rem;
+      font-weight: 500;
       color: #fff;
     }
 
-    .announce .countdown-sep {
-      font-family: var(--font-body);
-      font-size: 0.78rem;
-      font-weight: 600;
-      color: var(--champagne-bright);
-      padding: 0;
-      align-self: center;
+    .announce .cd-sep {
+      font-size: 0.72rem;
+      font-weight: 500;
+      color: var(--gold);
+      padding: 0 0.05rem;
     }
 
-    .announce .countdown-label {
-      display: none;
-    }
-
-    .announce .countdown-unit {
-      align-items: center;
-    }
-
-    /* —— Nav —— */
+    /* ── Navigation ── */
     .nav {
       position: fixed;
-      top: 2.45rem;
+      top: 2.35rem;
       left: 0;
       right: 0;
       z-index: 100;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 1rem;
-      width: 100%;
-      padding: 0.85rem 2rem;
-      transition: background 0.4s var(--ease), backdrop-filter 0.4s var(--ease), padding 0.4s var(--ease);
+      padding: 0.9rem 2.5rem;
+      transition: all 0.5s var(--ease);
     }
 
     .nav.scrolled {
-      background: rgba(250, 248, 245, 0.92);
-      backdrop-filter: blur(16px);
-      padding: 0.7rem 2rem;
+      background: rgba(247,244,238,0.88);
+      backdrop-filter: blur(20px) saturate(1.2);
+      -webkit-backdrop-filter: blur(20px) saturate(1.2);
+      padding: 0.7rem 2.5rem;
       border-bottom: 1px solid var(--line);
     }
 
     .nav-brand {
-      font-family: var(--font-display);
-      font-size: 1.15rem;
+      font-family: var(--font-serif);
+      font-size: 1rem;
       font-weight: 500;
-      letter-spacing: 0.28em;
+      letter-spacing: 0.32em;
       text-transform: uppercase;
-      flex-shrink: 0;
+      color: var(--ink);
     }
 
     .nav-links {
       display: flex;
       align-items: center;
-      gap: 1.75rem;
-      min-width: 0;
+      gap: 2rem;
     }
 
-    .nav-links > a:not(.btn-amazon) {
-      font-size: 0.75rem;
+    .nav-link {
+      font-family: var(--font-sans);
+      font-size: 0.68rem;
       font-weight: 400;
-      letter-spacing: 0.14em;
+      letter-spacing: 0.15em;
       text-transform: uppercase;
       color: var(--ink-soft);
-      opacity: 0.7;
-      transition: opacity 0.25s;
+      opacity: 0.6;
+      transition: opacity 0.3s, letter-spacing 0.4s var(--ease);
     }
 
-    .nav-links > a:not(.btn-amazon):hover { opacity: 1; }
+    .nav-link:hover {
+      opacity: 1;
+      letter-spacing: 0.19em;
+    }
 
-    .nav .btn-amazon {
-      padding: 0.45rem 0.85rem 0.45rem 0.95rem;
-      gap: 0.45rem;
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.16);
+    .btn-amazon {
+      --amz-bg: #1a1a1a;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 0.55rem 0.95rem 0.55rem 1.1rem;
+      background: var(--amz-bg);
+      color: #fff;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.06);
+      box-shadow:
+        0 1px 0 rgba(255,255,255,0.05) inset,
+        0 8px 24px rgba(0,0,0,0.18);
+      transition: transform 0.4s var(--ease), box-shadow 0.4s var(--ease), background 0.3s;
+      position: relative;
+      overflow: hidden;
+      -webkit-tap-highlight-color: transparent;
       flex-shrink: 0;
     }
 
-    .nav .btn-amazon .amazon-badge {
-      width: min(118px, 34vw);
+    .btn-amazon::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(115deg, transparent 35%, rgba(255,153,0,0.1) 50%, transparent 65%);
+      transform: translateX(-140%);
+      transition: transform 0.7s var(--ease);
     }
 
-    .nav .btn-amazon .amz-chevron {
-      font-size: 1.15rem;
+    .btn-amazon:hover {
+      background: #111;
+      transform: translateY(-2px);
+      box-shadow:
+        0 1px 0 rgba(255,255,255,0.08) inset,
+        0 14px 32px rgba(0,0,0,0.28);
     }
 
-    /* —— Hero —— */
+    .btn-amazon:hover::before { transform: translateX(140%); }
+
+    .btn-amazon .amazon-badge {
+      position: relative;
+      z-index: 1;
+      display: block;
+      height: auto;
+      object-fit: contain;
+    }
+
+    .btn-amazon .amz-arrow {
+      position: relative;
+      z-index: 1;
+      font-size: 1.2rem;
+      font-weight: 300;
+      color: #ff9900;
+      transition: transform 0.3s var(--ease);
+      line-height: 1;
+    }
+
+    .btn-amazon:hover .amz-arrow { transform: translateX(3px); }
+
+    .nav .btn-amazon { padding: 0.42rem 0.75rem 0.42rem 0.85rem; gap: 0.4rem; }
+    .nav .btn-amazon .amazon-badge { width: 110px; }
+    .nav .btn-amazon .amz-arrow { font-size: 1rem; }
+
+    /* ── Ghost Button ── */
+    .btn-ghost {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-family: var(--font-sans);
+      font-size: 0.68rem;
+      font-weight: 400;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+      padding: 0.9rem 0;
+      border-bottom: 1px solid rgba(17,17,17,0.25);
+      transition: color 0.3s, border-color 0.3s, letter-spacing 0.4s var(--ease);
+    }
+
+    .btn-ghost:hover {
+      color: var(--gold);
+      border-color: var(--gold);
+      letter-spacing: 0.22em;
+    }
+
+    .btn-ghost .ghost-arrow {
+      font-size: 0.9rem;
+      transition: transform 0.3s var(--ease);
+    }
+
+    .btn-ghost:hover .ghost-arrow { transform: translateX(4px); }
+
+    /* ═══════════════════════════════════════════
+       HERO
+       ═══════════════════════════════════════════ */
     .hero {
       min-height: 100svh;
-      width: 100%;
-      max-width: 100%;
       display: grid;
-      grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+      grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
       align-items: stretch;
       position: relative;
       overflow: hidden;
@@ -236,89 +327,149 @@
       display: flex;
       flex-direction: column;
       justify-content: center;
-      padding: 9.5rem 3.5rem 5rem 5rem;
-      max-width: 34rem;
-      min-width: 0;
-      width: 100%;
+      padding: 10rem 3rem 5rem 5.5rem;
+      max-width: 36rem;
+    }
+
+    .hero-eyebrow {
+      font-family: var(--font-sans);
+      font-size: 0.6rem;
+      font-weight: 500;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 0.6rem;
+      opacity: 0;
     }
 
     .hero-brand {
-      font-family: var(--font-display);
-      font-size: clamp(2.8rem, 5.5vw, 4.5rem);
+      font-family: var(--font-serif);
+      font-size: clamp(2rem, 3.5vw, 2.8rem);
       font-weight: 500;
-      letter-spacing: 0.18em;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
       line-height: 1;
-      text-transform: uppercase;
-      margin-bottom: 0.35rem;
+      margin-bottom: 0.2rem;
       opacity: 0;
-      animation: rise 1s var(--ease) 0.15s forwards;
-    }
-
-    .hero-tag {
-      font-size: 0.7rem;
-      font-weight: 400;
-      letter-spacing: 0.32em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-bottom: 2.5rem;
-      opacity: 0;
-      animation: rise 1s var(--ease) 0.3s forwards;
     }
 
     .hero-product-name {
-      font-family: var(--font-display);
-      font-size: clamp(3.2rem, 6vw, 5rem);
-      font-weight: 600;
-      letter-spacing: 0.08em;
-      line-height: 0.95;
-      margin-bottom: 1.25rem;
+      font-family: var(--font-serif);
+      font-size: clamp(4rem, 8vw, 7rem);
+      font-weight: 400;
+      font-style: italic;
+      letter-spacing: 0.02em;
+      line-height: 0.9;
+      margin-bottom: 2rem;
       opacity: 0;
-      animation: rise 1s var(--ease) 0.45s forwards;
     }
 
     .hero-lead {
-      font-size: 1.05rem;
+      font-size: 1rem;
       font-weight: 300;
       color: var(--ink-soft);
-      max-width: 22rem;
-      margin-bottom: 2.5rem;
-      line-height: 1.7;
+      max-width: 24rem;
+      line-height: 1.85;
+      margin-bottom: 2rem;
       opacity: 0;
-      animation: rise 1s var(--ease) 0.6s forwards;
+    }
+
+    /* Countdown */
+    .hero-countdown {
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
+      padding: 1rem 0;
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      margin-bottom: 2.5rem;
+      opacity: 0;
+    }
+
+    .hero-countdown-label {
+      font-size: 0.58rem;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
+      white-space: nowrap;
+    }
+
+    .cd {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .cd-unit {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.15rem;
+    }
+
+    .cd-digit {
+      font-family: var(--font-serif);
+      font-size: 1.25rem;
+      font-weight: 500;
+      color: var(--ink);
+      min-width: 1.8rem;
+      text-align: center;
+      line-height: 1;
+    }
+
+    .cd-label {
+      font-family: var(--font-sans);
+      font-size: 0.42rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .cd-sep {
+      font-family: var(--font-serif);
+      font-size: 1.1rem;
+      color: var(--gold);
+      margin: 0 0.05rem;
+      align-self: flex-start;
+      line-height: 1;
     }
 
     .hero-actions {
       display: flex;
-      flex-wrap: wrap;
-      gap: 1rem;
       align-items: center;
+      gap: 1.5rem;
+      flex-wrap: wrap;
       opacity: 0;
-      animation: rise 1s var(--ease) 0.75s forwards;
     }
 
+    .hero-actions .btn-amazon .amazon-badge { width: 140px; }
+
+    /* Hero Visual */
     .hero-visual {
       position: relative;
       display: flex;
       align-items: center;
       justify-content: center;
       overflow: hidden;
-      padding: 6rem 3rem 4rem;
       background:
-        radial-gradient(ellipse 70% 55% at 55% 45%, rgba(255, 255, 255, 0.55), transparent 70%),
-        linear-gradient(160deg, #efe8dc 0%, #ddd2c2 48%, #cfc2ae 100%);
+        radial-gradient(ellipse 65% 50% at 55% 45%, rgba(255,255,255,0.45), transparent 70%),
+        linear-gradient(160deg, #EFE8DC 0%, #DDD2C2 45%, #D0C3AF 100%);
     }
 
     .hero-visual::before {
       content: "";
       position: absolute;
-      inset: 12% 10%;
-      border: 1px solid rgba(18, 17, 15, 0.06);
+      inset: 10% 8%;
+      border: 1px solid rgba(17,17,17,0.04);
       pointer-events: none;
-      z-index: 1;
+      z-index: 2;
     }
 
-    .hero-visual img {
+    .hero-bottle-wrap {
       position: relative;
+<<<<<<< Updated upstream
       z-index: 0;
       width: 100%;
       max-width: 520px;
@@ -346,42 +497,48 @@
       --amz-bg: #1a1a1a;
       --amz-orange: #ff9900;
       display: inline-flex;
+=======
+      z-index: 1;
+      display: flex;
+>>>>>>> Stashed changes
       align-items: center;
       justify-content: center;
-      gap: 0.75rem;
-      max-width: 100%;
-      min-width: 0;
-      padding: 0.65rem 1.05rem 0.65rem 1.25rem;
-      background: var(--amz-bg);
-      color: #fff;
-      border-radius: 999px;
-      border: 1px solid rgba(255, 255, 255, 0.06);
-      box-shadow:
-        0 1px 0 rgba(255, 255, 255, 0.06) inset,
-        0 10px 28px rgba(0, 0, 0, 0.22);
-      transition: transform 0.35s var(--ease), box-shadow 0.35s var(--ease), background 0.35s;
-      position: relative;
-      overflow: hidden;
-      -webkit-tap-highlight-color: transparent;
+      padding: 4rem 2rem;
+      will-change: transform;
     }
 
-    .btn-amazon::before {
-      content: "";
+    .hero-bottle-wrap img {
+      width: 100%;
+      max-width: 480px;
+      height: auto;
+      max-height: min(75vh, 680px);
+      object-fit: contain;
+      filter: drop-shadow(0 30px 60px rgba(17,17,17,0.16));
+      opacity: 0;
+      transform: translateY(30px) scale(0.95) rotate(1deg);
+    }
+
+    .hero-bottle-shadow {
       position: absolute;
-      inset: 0;
-      background: linear-gradient(115deg, transparent 35%, rgba(255, 153, 0, 0.12) 50%, transparent 65%);
-      transform: translateX(-130%);
-      transition: transform 0.7s var(--ease);
+      bottom: 12%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 55%;
+      height: 18px;
+      background: radial-gradient(ellipse, rgba(17,17,17,0.12) 0%, transparent 70%);
+      border-radius: 50%;
+      filter: blur(8px);
+      z-index: 0;
+      will-change: transform;
     }
 
-    .btn-amazon:hover {
-      background: #111;
-      transform: translateY(-2px);
-      box-shadow:
-        0 1px 0 rgba(255, 255, 255, 0.08) inset,
-        0 16px 36px rgba(0, 0, 0, 0.3);
+    /* Float animation */
+    @keyframes bottle-float {
+      0%, 100% { transform: translateY(0) rotate(0deg); }
+      50% { transform: translateY(-10px) rotate(0.5deg); }
     }
 
+<<<<<<< Updated upstream
     .btn-amazon:hover::before { transform: translateX(130%); }
 
     .btn-amazon .amazon-badge {
@@ -394,360 +551,304 @@
       object-fit: cover;
       flex: 0 1 auto;
       min-width: 0;
+=======
+    @keyframes bottle-float-subtle {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-6px); }
+>>>>>>> Stashed changes
     }
 
-    .btn-amazon .amz-chevron {
-      position: relative;
-      z-index: 1;
-      color: var(--amz-orange);
-      font-size: 1.55rem;
-      font-weight: 400;
-      line-height: 1;
-      margin-left: 0.2rem;
-      transition: transform 0.3s var(--ease);
+    .bottle-floating {
+      animation: bottle-float 6s var(--ease-smooth) infinite;
     }
 
-    .btn-amazon:hover .amz-chevron { transform: translateX(3px); }
-
-    .btn-amazon.btn-amazon-block {
-      width: 100%;
-      justify-content: center;
-      min-height: 4.35rem;
-      padding: 0.9rem 1.35rem;
+    .bottle-floating img {
+      opacity: 1 !important;
+      transform: none !important;
     }
 
-    .btn-amazon.btn-amazon-block .amazon-badge { width: min(170px, 62vw); }
-
-    .btn-ghost {
-      display: inline-flex;
-      align-items: center;
-      padding: 1.05rem 0.2rem;
-      font-size: 0.72rem;
-      font-weight: 400;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--ink-soft);
-      border-bottom: 1px solid rgba(18, 17, 15, 0.35);
-      transition: color 0.25s, border-color 0.25s, letter-spacing 0.35s;
-    }
-
-    .btn-ghost:hover {
-      color: var(--champagne);
-      border-color: var(--champagne);
-      letter-spacing: 0.22em;
-    }
-
-    /* —— Quiet launch countdown —— */
-    .purchase-meta {
-      display: flex;
-      align-items: center;
-      gap: 1.25rem;
-      width: 100%;
-      max-width: 100%;
-      margin: -0.55rem 0 1.65rem;
-      padding: 0.8rem 0;
-      border-top: 1px solid var(--line);
-      border-bottom: 1px solid var(--line);
-      opacity: 0;
-      animation: rise 1s var(--ease) 0.65s forwards;
-      flex-wrap: wrap;
-    }
-
-    .purchase-meta-label {
-      font-size: 0.6rem;
-      font-weight: 500;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--muted);
-      white-space: nowrap;
-    }
-
-    .countdown {
-      display: inline-flex;
-      align-items: baseline;
-      gap: 0.38rem;
-      font-variant-numeric: tabular-nums;
-    }
-
-    .countdown-unit {
-      display: flex;
-      align-items: baseline;
-      gap: 0.2rem;
-    }
-
-    .countdown-digits { display: contents; }
-
-    .countdown-digit {
-      min-width: 1.35rem;
-      font-family: var(--font-display);
-      font-size: 1.3rem;
-      font-weight: 500;
-      line-height: 1;
-      color: var(--ink);
-      text-align: center;
-    }
-
-    .countdown-sep {
-      font-family: var(--font-display);
-      font-size: 1.15rem;
-      color: var(--champagne);
-    }
-
-    .countdown-label {
-      font-size: 0.45rem;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--muted);
-    }
-
-    /* —— Marquee —— */
+    /* ═══════════════════════════════════════════
+       MARQUEE
+       ═══════════════════════════════════════════ */
     .marquee-wrap {
       border-top: 1px solid var(--line);
       border-bottom: 1px solid var(--line);
-      background: rgba(255, 255, 255, 0.35);
+      background: rgba(255,255,255,0.3);
       overflow: hidden;
-      width: 100%;
-      max-width: 100%;
-      padding: 1.1rem 0;
+      padding: 1.15rem 0;
     }
 
     .marquee {
       display: flex;
       width: max-content;
-      max-width: none;
-      animation: marquee 32s linear infinite;
+      animation: marquee-slide 40s linear infinite;
       will-change: transform;
     }
 
     .marquee span {
-      font-family: var(--font-display);
-      font-size: 1rem;
+      font-family: var(--font-serif);
+      font-size: 0.9rem;
       font-weight: 400;
-      letter-spacing: 0.22em;
+      letter-spacing: 0.25em;
       text-transform: uppercase;
-      padding: 0 2.5rem;
-      white-space: nowrap;
       color: var(--ink-soft);
+      padding: 0 1.5rem;
+      white-space: nowrap;
     }
 
-    .marquee span em {
+    .marquee .dot {
+      color: var(--gold);
+      font-size: 0.5rem;
+      padding: 0 1.5rem;
+      display: inline-flex;
+      align-items: center;
+    }
+
+    .marquee em {
       font-style: italic;
-      color: var(--champagne);
-      letter-spacing: 0.12em;
+      color: var(--gold-dim);
     }
 
-    @keyframes marquee {
+    @keyframes marquee-slide {
       from { transform: translateX(0); }
       to { transform: translateX(-50%); }
     }
 
-    /* —— Sections shared —— */
-    section { position: relative; }
-
-    .section-inner {
-      max-width: 1100px;
+    /* ═══════════════════════════════════════════
+       SHARED SECTION STYLES
+       ═══════════════════════════════════════════ */
+    .s-inner {
+      max-width: 1140px;
       margin: 0 auto;
-      padding: 6.5rem 2rem;
+      padding: 8rem 2.5rem;
     }
 
     .eyebrow {
-      font-size: 0.68rem;
+      font-family: var(--font-sans);
+      font-size: 0.62rem;
       font-weight: 500;
-      letter-spacing: 0.28em;
+      letter-spacing: 0.32em;
       text-transform: uppercase;
-      color: var(--champagne);
+      color: var(--gold);
       margin-bottom: 1rem;
     }
 
-    .section-title {
-      font-family: var(--font-display);
+    .s-title {
+      font-family: var(--font-serif);
       font-size: clamp(2.4rem, 4.5vw, 3.6rem);
-      font-weight: 500;
-      line-height: 1.1;
-      letter-spacing: 0.02em;
+      font-weight: 400;
+      line-height: 1.08;
+      letter-spacing: 0.01em;
       margin-bottom: 1.25rem;
     }
 
-    .section-lead {
-      font-size: 1.05rem;
+    .s-lead {
+      font-size: 1rem;
+      font-weight: 300;
       color: var(--muted);
       max-width: 32rem;
-      line-height: 1.75;
+      line-height: 1.8;
     }
 
-    .reveal {
+    .reveal-up {
       opacity: 0;
-      transform: translateY(36px);
+      transform: translateY(40px);
       transition: opacity 0.9s var(--ease), transform 0.9s var(--ease);
     }
 
-    .reveal.visible {
+    .reveal-up.visible {
       opacity: 1;
       transform: translateY(0);
     }
 
-    /* —— Story —— */
-    .story {
+    /* ═══════════════════════════════════════════
+       STORY SECTION
+       ═══════════════════════════════════════════ */
+    .story-grid {
       display: grid;
-      grid-template-columns: 1.05fr 0.95fr;
-      gap: 4.5rem;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 5rem;
       align-items: center;
     }
 
     .story-visual {
       position: relative;
-      aspect-ratio: 5 / 4;
+      aspect-ratio: 4 / 5;
       overflow: hidden;
       background:
-        radial-gradient(ellipse at 50% 40%, #f3eee6, #e2d8c8 70%);
+        radial-gradient(ellipse at 50% 40%, #F3EEE6, #E2D8C8 75%);
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 1.75rem;
+      padding: 2rem;
     }
 
     .story-visual img {
       width: 100%;
       height: 100%;
+<<<<<<< Updated upstream
       object-fit: cover;
       object-position: center;
       filter: drop-shadow(0 18px 36px rgba(18, 17, 15, 0.12));
       transition: transform 1.2s var(--ease);
+=======
+      object-fit: contain;
+      filter: drop-shadow(0 20px 40px rgba(17,17,17,0.1));
+      transition: transform 1.4s var(--ease);
+>>>>>>> Stashed changes
     }
 
     .story-visual:hover img { transform: scale(1.03); }
 
-    .story-copy .section-title { margin-bottom: 1.5rem; }
+    .story-copy .s-title { margin-bottom: 1.8rem; }
 
     .story-copy p {
-      color: var(--ink-soft);
-      margin-bottom: 1.25rem;
       font-size: 1rem;
-      line-height: 1.8;
+      font-weight: 300;
+      color: var(--ink-soft);
+      line-height: 1.85;
+      margin-bottom: 1.25rem;
     }
 
     .origin-row {
       display: flex;
-      gap: 2.5rem;
-      margin-top: 2.5rem;
+      gap: 3rem;
+      margin-top: 3rem;
       padding-top: 2rem;
       border-top: 1px solid var(--line);
     }
 
     .origin-item strong {
       display: block;
-      font-family: var(--font-display);
-      font-size: 1.35rem;
+      font-family: var(--font-serif);
+      font-size: 1.4rem;
       font-weight: 500;
-      margin-bottom: 0.2rem;
+      margin-bottom: 0.15rem;
     }
 
     .origin-item span {
-      font-size: 0.7rem;
-      letter-spacing: 0.16em;
+      font-size: 0.65rem;
+      letter-spacing: 0.18em;
       text-transform: uppercase;
       color: var(--muted);
     }
 
-    /* —— Notes —— */
-    .notes {
+    /* ═══════════════════════════════════════════
+       SCENT NOTES — DARK
+       ═══════════════════════════════════════════ */
+    .notes-section {
       background: var(--ink);
-      color: var(--mist);
+      color: var(--ivory);
       overflow: hidden;
     }
 
-    .notes .section-inner { padding-top: 5.5rem; padding-bottom: 5.5rem; }
+    .notes-section .eyebrow { color: var(--gold-bright); }
+    .notes-section .s-title { color: #fff; }
+    .notes-section .s-lead { color: rgba(247,244,238,0.45); }
 
-    .notes .eyebrow { color: var(--champagne-bright); }
+    .notes-header {
+      text-align: center;
+      max-width: 34rem;
+      margin: 0 auto 4rem;
+    }
 
-    .notes .section-title { color: #fff; }
-
-    .notes .section-lead { color: rgba(246, 242, 235, 0.55); }
+    .notes-header .s-lead { margin: 0 auto; }
 
     .notes-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 1px;
-      margin-top: 3.5rem;
-      background: rgba(255, 255, 255, 0.08);
-      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.06);
     }
 
     .note-card {
       background: var(--ink);
-      padding: 2.5rem 2rem;
+      padding: 3rem 2rem;
       text-align: center;
-      transition: background 0.4s;
+      transition: background 0.5s var(--ease);
+      position: relative;
+      overflow: hidden;
+      cursor: default;
     }
 
-    .note-card:hover { background: #1a1916; }
+    .note-card::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      transition: opacity 0.6s var(--ease);
+      pointer-events: none;
+    }
+
+    .note-card:nth-child(1)::after {
+      background: radial-gradient(ellipse at center, rgba(180,120,60,0.08), transparent 70%);
+    }
+    .note-card:nth-child(2)::after {
+      background: radial-gradient(ellipse at center, rgba(210,190,150,0.08), transparent 70%);
+    }
+    .note-card:nth-child(3)::after {
+      background: radial-gradient(ellipse at center, rgba(140,100,60,0.1), transparent 70%);
+    }
+
+    .note-card:hover::after { opacity: 1; }
+    .note-card:hover { background: #161513; }
 
     .note-num {
-      font-family: var(--font-display);
-      font-size: 0.85rem;
+      font-family: var(--font-serif);
+      font-size: 0.82rem;
       font-style: italic;
-      color: var(--champagne);
-      margin-bottom: 1.25rem;
+      color: var(--gold);
+      margin-bottom: 1.5rem;
       display: block;
     }
 
     .note-name {
-      font-family: var(--font-display);
-      font-size: 1.85rem;
-      font-weight: 500;
+      font-family: var(--font-serif);
+      font-size: 2rem;
+      font-weight: 400;
       letter-spacing: 0.06em;
-      margin-bottom: 0.75rem;
+      margin-bottom: 0.4rem;
+      transition: letter-spacing 0.5s var(--ease);
     }
+
+    .note-card:hover .note-name { letter-spacing: 0.1em; }
+
+    .note-line {
+      width: 28px;
+      height: 1px;
+      background: var(--gold);
+      margin: 1rem auto;
+      opacity: 0.4;
+      transition: width 0.5s var(--ease), opacity 0.5s;
+    }
+
+    .note-card:hover .note-line { width: 48px; opacity: 0.7; }
 
     .note-desc {
       font-size: 0.88rem;
-      color: rgba(246, 242, 235, 0.5);
-      line-height: 1.65;
+      font-weight: 300;
+      color: rgba(247,244,238,0.4);
+      line-height: 1.7;
       max-width: 16rem;
       margin: 0 auto;
     }
 
-    /* —— Products —— */
-    .products-header {
-      text-align: center;
-      margin-bottom: 3.5rem;
+    /* ═══════════════════════════════════════════
+       INGREDIENTS — LABORATORY
+       ═══════════════════════════════════════════ */
+    .ingredients-section {
+      border-top: 1px solid var(--line);
     }
 
-    .products-header .section-lead {
-      margin: 0 auto;
-    }
-
-    .products-grid {
+    .ingredients-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 2rem;
-    }
-
-    .product {
-      position: relative;
-      background: transparent;
-      border: none;
-      padding: 0;
-      overflow: visible;
-      transition: transform 0.4s var(--ease);
-    }
-
-    .product:hover {
-      transform: translateY(-4px);
-    }
-
-    .product-media {
-      aspect-ratio: 4 / 5;
-      background:
-        radial-gradient(ellipse at 50% 35%, #f5f0e8, #ddd2c2 75%);
-      overflow: hidden;
-      position: relative;
-      display: flex;
+      gap: 5rem;
       align-items: center;
-      justify-content: center;
-      padding: 1.5rem 1.25rem;
     }
 
+<<<<<<< Updated upstream
     .product-media img {
       width: 100%;
       height: 100%;
@@ -756,352 +857,534 @@
       transition: transform 0.8s var(--ease);
       filter: drop-shadow(0 16px 28px rgba(18, 17, 15, 0.14));
     }
+=======
+    .ingredients-copy .s-title { margin-bottom: 1.5rem; }
+>>>>>>> Stashed changes
 
-    .product:hover .product-media img { transform: scale(1.04); }
-
-    .product-media.placeholder {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background:
-        radial-gradient(circle at 50% 40%, rgba(196, 165, 116, 0.2), transparent 60%),
-        linear-gradient(160deg, #ebe4d8 0%, #d9cfc0 100%);
-    }
-
-    .product-media.placeholder .soon-mark {
-      font-family: var(--font-display);
-      font-size: 1.5rem;
-      font-style: italic;
-      letter-spacing: 0.12em;
+    .ingredients-copy p {
+      font-size: 0.95rem;
+      font-weight: 300;
       color: var(--ink-soft);
-      opacity: 0.45;
-    }
-
-    .product-body {
-      padding: 1.75rem 0 0;
-    }
-
-    .product-size {
-      font-size: 0.65rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-bottom: 0.5rem;
-    }
-
-    .product-title {
-      font-family: var(--font-display);
-      font-size: 2rem;
-      font-weight: 600;
-      letter-spacing: 0.08em;
-      margin-bottom: 0.35rem;
-    }
-
-    .product-sub {
-      font-size: 0.82rem;
-      color: var(--muted);
-      margin-bottom: 1rem;
-      line-height: 1.5;
-    }
-
-    .product-notes {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.4rem;
+      line-height: 1.85;
       margin-bottom: 1.5rem;
     }
 
-    .product-notes span {
-      font-size: 0.65rem;
-      letter-spacing: 0.14em;
+    .spec-table {
+      margin-top: 2.5rem;
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .spec-table tr {
+      border-bottom: 1px solid var(--line);
+    }
+
+    .spec-table td {
+      padding: 0.85rem 0;
+      vertical-align: top;
+    }
+
+    .spec-table td:first-child {
+      font-size: 0.6rem;
+      font-weight: 500;
+      letter-spacing: 0.2em;
       text-transform: uppercase;
-      padding: 0.35rem 0.7rem;
-      border: 1px solid var(--line);
+      color: var(--muted);
+      width: 40%;
+      padding-right: 1rem;
+    }
+
+    .spec-table td:last-child {
+      font-size: 0.92rem;
+      font-weight: 300;
       color: var(--ink-soft);
     }
 
-    /* —— CTA band —— */
-    .cta-band {
+    .ingredients-visual {
+      position: relative;
+      aspect-ratio: 4 / 5;
+      overflow: hidden;
+    }
+
+    .ingredients-visual img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 1.2s var(--ease);
+    }
+
+    .ingredients-visual:hover img { transform: scale(1.04); }
+
+    /* ═══════════════════════════════════════════
+       WHY EXPENSIVE — MAGAZINE
+       ═══════════════════════════════════════════ */
+    .expensive-section {
+      background: var(--sand);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .expensive-inner {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 8rem 2.5rem;
       text-align: center;
-      padding: 6rem 2rem;
+    }
+
+    .expensive-statement {
+      margin-bottom: 5rem;
+    }
+
+    .expensive-statement:last-child { margin-bottom: 0; }
+
+    .expensive-num {
+      font-family: var(--font-serif);
+      font-size: 0.8rem;
+      font-style: italic;
+      color: var(--gold);
+      margin-bottom: 2rem;
+      display: block;
+    }
+
+    .expensive-quote {
+      font-family: var(--font-serif);
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      font-weight: 400;
+      font-style: italic;
+      line-height: 1.2;
+      letter-spacing: 0.01em;
+      color: var(--ink);
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    .expensive-detail {
+      font-size: 0.9rem;
+      font-weight: 300;
+      color: var(--muted);
+      margin-top: 1.5rem;
+      max-width: 420px;
+      margin-left: auto;
+      margin-right: auto;
+      line-height: 1.75;
+    }
+
+    /* ═══════════════════════════════════════════
+       LIFESTYLE — CINEMATIC
+       ═══════════════════════════════════════════ */
+    .lifestyle-section {
+      padding: 0;
+    }
+
+    .lifestyle-image {
+      position: relative;
+      width: 100%;
+      height: 70vh;
+      min-height: 400px;
+      overflow: hidden;
+    }
+
+    .lifestyle-image img {
+      width: 100%;
+      height: 120%;
+      object-fit: cover;
+      object-position: center 30%;
+      will-change: transform;
+    }
+
+    .lifestyle-caption {
+      position: absolute;
+      bottom: 3rem;
+      left: 3rem;
+      z-index: 2;
+    }
+
+    .lifestyle-caption p {
+      font-family: var(--font-serif);
+      font-size: 0.8rem;
+      font-style: italic;
+      color: #fff;
+      letter-spacing: 0.08em;
+      text-shadow: 0 1px 8px rgba(0,0,0,0.3);
+    }
+
+    .lifestyle-caption span {
+      display: block;
+      font-family: var(--font-sans);
+      font-size: 0.55rem;
+      font-style: normal;
+      font-weight: 400;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.6);
+      margin-top: 0.3rem;
+    }
+
+    .lifestyle-image::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(17,17,17,0.35) 0%, transparent 50%);
+      pointer-events: none;
+    }
+
+    /* ═══════════════════════════════════════════
+       REVIEWS — LUXURY
+       ═══════════════════════════════════════════ */
+    .reviews-section {
+      border-top: 1px solid var(--line);
+    }
+
+    .reviews-header {
+      text-align: center;
+      max-width: 30rem;
+      margin: 0 auto 5rem;
+    }
+
+    .reviews-header .s-lead { margin: 0 auto; }
+
+    .reviews-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 3rem;
+    }
+
+    .review {
+      text-align: center;
+      padding: 0 1rem;
+    }
+
+    .review-quote {
+      font-family: var(--font-serif);
+      font-size: 1.15rem;
+      font-weight: 400;
+      font-style: italic;
+      line-height: 1.55;
+      color: var(--ink);
+      margin-bottom: 1.5rem;
+    }
+
+    .review-quote::before {
+      content: """;
+      display: block;
+      font-family: var(--font-serif);
+      font-size: 3rem;
+      color: var(--gold);
+      line-height: 1;
+      margin-bottom: 0.5rem;
+      opacity: 0.4;
+    }
+
+    .review-author {
+      font-size: 0.6rem;
+      font-weight: 500;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    /* ═══════════════════════════════════════════
+       CTA BAND
+       ═══════════════════════════════════════════ */
+    .cta-section {
+      text-align: center;
+      padding: 7rem 2.5rem;
       background:
-        radial-gradient(ellipse 60% 80% at 50% 100%, rgba(196, 165, 116, 0.22), transparent 70%),
+        radial-gradient(ellipse 50% 70% at 50% 100%, rgba(199,161,106,0.12), transparent 70%),
         var(--sand);
     }
 
-    .cta-band .section-title {
-      max-width: 28rem;
+    .cta-section .s-title {
+      max-width: 26rem;
       margin-left: auto;
       margin-right: auto;
     }
 
-    .cta-band .section-lead {
-      margin: 0 auto 2.25rem;
+    .cta-section .s-lead {
+      margin: 0 auto 2.5rem;
     }
 
-    .cta-band .btn-amazon {
-      padding: 0.85rem 1.4rem 0.85rem 1.55rem;
+    .cta-section .btn-amazon {
+      padding: 0.75rem 1.3rem 0.75rem 1.45rem;
     }
 
-    /* —— Footer —— */
+    .cta-section .btn-amazon .amazon-badge { width: 150px; }
+
+    /* ═══════════════════════════════════════════
+       FOOTER
+       ═══════════════════════════════════════════ */
     footer {
       background: var(--ink);
-      color: rgba(246, 242, 235, 0.55);
-      padding: 3.5rem 2rem 2rem;
+      color: rgba(247,244,238,0.45);
+      padding: 4rem 2.5rem 2rem;
     }
 
     .footer-inner {
-      max-width: 1100px;
+      max-width: 1140px;
       margin: 0 auto;
       display: flex;
-      flex-wrap: wrap;
       justify-content: space-between;
+      align-items: flex-start;
+      flex-wrap: wrap;
       gap: 2rem;
-      padding-bottom: 2.5rem;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      padding-bottom: 3rem;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
     }
 
-    .footer-brand {
-      font-family: var(--font-display);
-      font-size: 1.4rem;
+    .footer-brand-text {
+      font-family: var(--font-serif);
+      font-size: 1.2rem;
       font-weight: 500;
-      letter-spacing: 0.28em;
+      letter-spacing: 0.3em;
       text-transform: uppercase;
       color: #fff;
-      margin-bottom: 0.5rem;
+      margin-bottom: 0.4rem;
     }
 
-    .footer-tag {
-      font-size: 0.75rem;
+    .footer-tagline {
+      font-size: 0.7rem;
       letter-spacing: 0.12em;
       text-transform: uppercase;
+      color: rgba(247,244,238,0.35);
     }
 
     .footer-meta {
       text-align: right;
-      font-size: 0.8rem;
-      line-height: 1.8;
+      font-size: 0.78rem;
+      line-height: 2;
     }
 
     .footer-meta a {
-      color: rgba(246, 242, 235, 0.7);
-      transition: color 0.25s;
+      color: rgba(247,244,238,0.6);
+      transition: color 0.3s;
     }
 
-    .footer-meta a:hover { color: var(--champagne-bright); }
+    .footer-meta a:hover { color: var(--gold-bright); }
 
     .footer-bottom {
-      max-width: 1100px;
+      max-width: 1140px;
       margin: 0 auto;
       padding-top: 1.5rem;
       display: flex;
       justify-content: space-between;
       flex-wrap: wrap;
       gap: 0.75rem;
-      font-size: 0.7rem;
+      font-size: 0.65rem;
       letter-spacing: 0.06em;
     }
 
-    .disclaimer {
-      max-width: 1100px;
-      margin: 1.5rem auto 0;
-      font-size: 0.65rem;
-      line-height: 1.6;
-      opacity: 0.45;
+    .footer-disclaimer {
+      max-width: 1140px;
+      margin: 1.75rem auto 0;
+      font-size: 0.6rem;
+      line-height: 1.65;
+      opacity: 0.35;
     }
 
-    /* —— Responsive —— */
-    @media (max-width: 960px) {
+    /* ═══════════════════════════════════════════
+       RESPONSIVE
+       ═══════════════════════════════════════════ */
+    @media (max-width: 1024px) {
       .hero {
         grid-template-columns: 1fr;
         min-height: auto;
       }
 
+      .hero-visual { order: -1; min-height: 55vh; }
+
       .hero-copy {
-        padding: 8.5rem 1.75rem 3rem;
+        padding: 4rem 2rem 5rem;
         max-width: none;
         text-align: center;
         align-items: center;
       }
 
       .hero-lead { max-width: 28rem; }
-
       .hero-actions { justify-content: center; }
+      .hero-countdown { justify-content: center; }
 
-      .hero-visual {
-        min-height: 58vh;
-        order: -1;
-        padding: 5.5rem 1.5rem 2rem;
-      }
+      .nav-link { display: none; }
+      .nav { padding: 0.8rem 1.5rem; }
 
-      .hero-visual::before { inset: 8% 6%; }
-
-      .hero-visual img {
-        max-height: 52vh;
-        max-width: 420px;
-      }
-
-      .nav-links > a:not(.btn-amazon) { display: none; }
-
-      .story {
+      .story-grid {
         grid-template-columns: 1fr;
-        gap: 2.5rem;
+        gap: 3rem;
       }
 
-      .story-visual {
-        aspect-ratio: 16 / 11;
-        padding: 1.25rem;
-      }
+      .story-visual { aspect-ratio: 16 / 11; }
 
       .notes-grid { grid-template-columns: 1fr; }
 
-      .products-grid { grid-template-columns: 1fr; max-width: 420px; margin: 0 auto; }
+      .ingredients-grid {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+      }
+
+      .ingredients-visual { order: -1; aspect-ratio: 16 / 10; }
+
+      .reviews-grid {
+        grid-template-columns: 1fr;
+        max-width: 420px;
+        margin: 0 auto;
+        gap: 4rem;
+      }
+
+      .footer-inner { flex-direction: column; text-align: center; align-items: center; }
+      .footer-meta { text-align: center; }
+      .footer-bottom { justify-content: center; text-align: center; }
+
+      .lifestyle-image { height: 50vh; }
+    }
+
+    @media (max-width: 640px) {
+      .announce { gap: 0.5rem; padding: 0.45rem 0.75rem; }
+      .announce-text { font-size: 0.52rem; letter-spacing: 0.12em; }
+      .announce .cd-digit { min-width: 1.3rem; height: 1.3rem; font-size: 0.65rem; }
+
+      .nav { top: 2.6rem; padding: 0.7rem 1rem; }
+      .nav.scrolled { padding: 0.6rem 1rem; }
+      .nav-brand { font-size: 0.85rem; letter-spacing: 0.25em; }
+      .nav .btn-amazon { padding: 0.38rem 0.65rem 0.38rem 0.72rem; }
+      .nav .btn-amazon .amazon-badge { width: 95px; }
+
+      .s-inner { padding: 5rem 1.25rem; }
+
+      .hero-copy { padding: 3rem 1.25rem 4rem; }
+      .hero-product-name { font-size: clamp(3.2rem, 12vw, 5rem); }
+      .hero-visual { min-height: 50vh; }
+      .hero-bottle-wrap { padding: 3rem 1.5rem; }
+      .hero-bottle-wrap img { max-width: 320px; max-height: 55vh; }
+
+      .hero-actions {
+        flex-direction: column;
+        width: 100%;
+      }
+
+      .hero-actions .btn-amazon,
+      .hero-actions .btn-ghost {
+        width: 100%;
+        justify-content: center;
+      }
+
+      .hero-actions .btn-ghost {
+        border: 1px solid var(--line);
+        padding: 0.9rem;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .hero-countdown {
+        width: 100%;
+        justify-content: space-between;
+        gap: 0.6rem;
+      }
+
+      .hero-countdown-label { font-size: 0.5rem; }
+      .cd-digit { font-size: 1.05rem; min-width: 1.4rem; }
+      .cd-sep { font-size: 0.95rem; }
+
+      .note-card { padding: 2.5rem 1.5rem; }
 
       .origin-row { flex-wrap: wrap; gap: 1.5rem; }
 
-      .footer-inner { flex-direction: column; text-align: center; }
+      .lifestyle-image { height: 40vh; min-height: 280px; }
+      .lifestyle-caption { bottom: 2rem; left: 1.5rem; }
 
-      .footer-meta { text-align: center; }
+      .expensive-inner { padding: 5rem 1.5rem; }
+      .expensive-statement { margin-bottom: 3.5rem; }
 
-      .footer-bottom { justify-content: center; text-align: center; }
+      .cta-section { padding: 5rem 1.5rem; }
+      .cta-section .btn-amazon { width: 100%; justify-content: center; }
     }
 
-    @media (max-width: 560px) {
-      .announce {
-        gap: 0.55rem;
-        padding: 0.5rem 0.75rem;
-      }
-      .announce-text { font-size: 0.55rem; letter-spacing: 0.12em; }
-      .announce .countdown-digit {
-        min-width: 1.35rem;
-        height: 1.35rem;
-        font-size: 0.7rem;
-      }
-      .nav {
-        top: 2.85rem;
-        padding: 0.75rem 1rem;
-      }
-      .nav.scrolled { padding: 0.65rem 1rem; }
-      .nav .btn-amazon {
-        padding: 0.4rem 0.7rem 0.4rem 0.8rem;
-      }
-      .nav .btn-amazon .amazon-badge { width: min(108px, 42vw); }
-      .section-inner { padding: 4.5rem 1.25rem; }
-      .hero-actions { flex-direction: column; width: 100%; }
-      .btn-amazon:not(.nav .btn-amazon), .btn-ghost { width: 100%; justify-content: center; }
-      .hero-actions .btn-amazon,
-      .cta-band .btn-amazon,
-      .btn-amazon.btn-amazon-block { width: 100%; justify-content: center; }
-      .btn-ghost { border: 1px solid var(--line); padding: 0.95rem; border-bottom: 1px solid var(--line); }
-      .purchase-meta {
-        width: 100%;
-        justify-content: space-between;
-        gap: 0.65rem;
-      }
-      .purchase-meta-label { font-size: 0.52rem; }
-      .countdown { gap: 0.22rem; }
-      .countdown-digit { min-width: 1.1rem; font-size: 1.05rem; }
-      .countdown-sep { font-size: 0.95rem; }
-    }
-
+    /* ── Reduced Motion ── */
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after {
         animation-duration: 0.01ms !important;
         animation-iteration-count: 1 !important;
         transition-duration: 0.01ms !important;
       }
-      .reveal { opacity: 1; transform: none; }
-      .hero-brand, .hero-tag, .hero-product-name, .hero-lead, .hero-actions, .purchase-meta,
-      .hero-visual img { opacity: 1; transform: none; animation: none; }
+      .reveal-up { opacity: 1; transform: none; }
+      .hero-eyebrow, .hero-brand, .hero-product-name,
+      .hero-lead, .hero-countdown, .hero-actions { opacity: 1; transform: none; }
+      .hero-bottle-wrap img { opacity: 1; transform: none; }
+      .bottle-floating { animation: none; }
     }
   </style>
 </head>
 <body>
+  <!-- Ambient layers -->
   <div class="atmosphere" aria-hidden="true"></div>
   <div class="grain" aria-hidden="true"></div>
+  <div class="vignette" aria-hidden="true"></div>
+  <div class="cursor-glow" id="cursorGlow" aria-hidden="true"></div>
 
+  <!-- Announcement bar -->
   <div class="announce" role="status" aria-live="polite">
-    <p class="announce-text">Launch offer · <strong>Ends in</strong></p>
-    <div class="countdown" data-countdown aria-label="Offer countdown">
-      <div class="countdown-unit">
-        <div class="countdown-digits">
-          <span class="countdown-digit" data-h>00</span>
-        </div>
-        <span class="countdown-label">Hrs</span>
-      </div>
-      <span class="countdown-sep">:</span>
-      <div class="countdown-unit">
-        <div class="countdown-digits">
-          <span class="countdown-digit" data-m>00</span>
-        </div>
-        <span class="countdown-label">Min</span>
-      </div>
-      <span class="countdown-sep">:</span>
-      <div class="countdown-unit">
-        <div class="countdown-digits">
-          <span class="countdown-digit" data-s>00</span>
-        </div>
-        <span class="countdown-label">Sec</span>
-      </div>
+    <p class="announce-text">Limited launch · <strong>Offer ends in</strong></p>
+    <div class="cd" data-countdown>
+      <span class="cd-digit" data-h>00</span>
+      <span class="cd-sep">:</span>
+      <span class="cd-digit" data-m>00</span>
+      <span class="cd-sep">:</span>
+      <span class="cd-digit" data-s>00</span>
     </div>
   </div>
 
+  <!-- Navigation -->
   <header class="nav" id="nav">
     <a href="#" class="nav-brand">Aromascent</a>
-    <nav class="nav-links" aria-label="Primary">
-      <a href="#story">Story</a>
-      <a href="#notes">Notes</a>
-      <a href="#products">Products</a>
+    <nav class="nav-links" aria-label="Primary navigation">
+      <a href="#story" class="nav-link">Story</a>
+      <a href="#notes" class="nav-link">Notes</a>
+      <a href="#ingredients" class="nav-link">Craft</a>
       <a class="btn-amazon" href="#amazon-my-way" id="cta-nav" target="_blank" rel="noopener noreferrer">
-        <img class="amazon-badge" src="assets/available-at-amazon.png" alt="Available at Amazon" width="150" height="22" />
-        <span class="amz-chevron" aria-hidden="true">›</span>
+        <img class="amazon-badge" src="assets/available-at-amazon.png" alt="Available at Amazon" width="110" height="16" />
+        <span class="amz-arrow" aria-hidden="true">›</span>
       </a>
     </nav>
   </header>
 
   <main>
-    <!-- HERO -->
-    <section class="hero" aria-label="AROMASCENT MY WAY">
+    <!-- ════════ HERO ════════ -->
+    <section class="hero" id="hero" aria-label="AROMASCENT MY WAY">
       <div class="hero-copy">
+        <p class="hero-eyebrow">Luxury Fragrance Oils</p>
         <p class="hero-brand">Aromascent</p>
-        <p class="hero-tag">Luxury Fragrance Oils</p>
         <h1 class="hero-product-name">My Way</h1>
         <p class="hero-lead">
-          A sophisticated blend inspired by the scent of 1&nbsp;Hotel®, Miami&nbsp;Beach — leather, sandalwood, and oud wood.
+          A sophisticated blend of leather, sandalwood &amp; oud wood — inspired by the atmosphere of 1&nbsp;Hotel®, Miami&nbsp;Beach.
         </p>
-        <div class="purchase-meta">
-          <span class="purchase-meta-label">Launch offer ends in</span>
-          <div class="countdown" data-countdown aria-hidden="true">
-            <div class="countdown-unit">
-              <div class="countdown-digits">
-                <span class="countdown-digit" data-h>00</span>
-              </div>
-              <span class="countdown-label">Hrs</span>
+        <div class="hero-countdown">
+          <span class="hero-countdown-label">Launch offer ends</span>
+          <div class="cd" data-countdown>
+            <div class="cd-unit">
+              <span class="cd-digit" data-h>00</span>
+              <span class="cd-label">Hrs</span>
             </div>
-            <span class="countdown-sep">:</span>
-            <div class="countdown-unit">
-              <div class="countdown-digits">
-                <span class="countdown-digit" data-m>00</span>
-              </div>
-              <span class="countdown-label">Min</span>
+            <span class="cd-sep">:</span>
+            <div class="cd-unit">
+              <span class="cd-digit" data-m>00</span>
+              <span class="cd-label">Min</span>
             </div>
-            <span class="countdown-sep">:</span>
-            <div class="countdown-unit">
-              <div class="countdown-digits">
-                <span class="countdown-digit" data-s>00</span>
-              </div>
-              <span class="countdown-label">Sec</span>
+            <span class="cd-sep">:</span>
+            <div class="cd-unit">
+              <span class="cd-digit" data-s>00</span>
+              <span class="cd-label">Sec</span>
             </div>
           </div>
         </div>
         <div class="hero-actions">
           <a class="btn-amazon" href="#amazon-my-way" id="cta-hero" target="_blank" rel="noopener noreferrer">
-            <img class="amazon-badge" src="assets/available-at-amazon.png" alt="Available at Amazon" width="150" height="22" />
-            <span class="amz-chevron" aria-hidden="true">›</span>
+            <img class="amazon-badge" src="assets/available-at-amazon.png" alt="Available at Amazon" width="140" height="20" />
+            <span class="amz-arrow" aria-hidden="true">›</span>
           </a>
-          <a class="btn-ghost" href="#notes">Explore the notes</a>
+          <a class="btn-ghost" href="#notes">
+            Explore the notes
+            <span class="ghost-arrow" aria-hidden="true">→</span>
+          </a>
         </div>
       </div>
+<<<<<<< Updated upstream
       <div class="hero-visual">
         <img
           src="Aromascents1.png"
@@ -1110,29 +1393,44 @@
           height="1100"
           fetchpriority="high"
         />
+=======
+      <div class="hero-visual" id="heroVisual">
+        <div class="hero-bottle-wrap" id="bottleWrap">
+          <img
+            src="Aromascents.jpeg"
+            alt="AROMASCENT MY WAY luxury fragrance oil bottle — 500ml, leather, sandalwood, oud wood"
+            width="900"
+            height="1100"
+            fetchpriority="high"
+            id="heroBottle"
+          />
+          <div class="hero-bottle-shadow" id="bottleShadow"></div>
+        </div>
+>>>>>>> Stashed changes
       </div>
     </section>
 
-    <!-- MARQUEE -->
+    <!-- ════════ MARQUEE ════════ -->
     <div class="marquee-wrap" aria-hidden="true">
       <div class="marquee">
-        <span>Leather</span><span>·</span>
-        <span>Sandalwood</span><span>·</span>
-        <span>Oud Wood</span><span>·</span>
-        <span><em>Inspired by Miami Beach</em></span><span>·</span>
-        <span>500ml</span><span>·</span>
-        <span>Made in USA</span><span>·</span>
-        <span>Leather</span><span>·</span>
-        <span>Sandalwood</span><span>·</span>
-        <span>Oud Wood</span><span>·</span>
-        <span><em>Inspired by Miami Beach</em></span><span>·</span>
-        <span>500ml</span><span>·</span>
-        <span>Made in USA</span><span>·</span>
+        <span>Leather</span><span class="dot">◆</span>
+        <span>Sandalwood</span><span class="dot">◆</span>
+        <span>Oud Wood</span><span class="dot">◆</span>
+        <span><em>Inspired by Miami Beach</em></span><span class="dot">◆</span>
+        <span>500ml</span><span class="dot">◆</span>
+        <span>Made in USA</span><span class="dot">◆</span>
+        <span>Leather</span><span class="dot">◆</span>
+        <span>Sandalwood</span><span class="dot">◆</span>
+        <span>Oud Wood</span><span class="dot">◆</span>
+        <span><em>Inspired by Miami Beach</em></span><span class="dot">◆</span>
+        <span>500ml</span><span class="dot">◆</span>
+        <span>Made in USA</span><span class="dot">◆</span>
       </div>
     </div>
 
-    <!-- STORY -->
+    <!-- ════════ STORY ════════ -->
     <section id="story">
+<<<<<<< Updated upstream
       <div class="section-inner story">
         <div class="story-visual reveal">
           <img
@@ -1164,42 +1462,81 @@
             <div class="origin-item">
               <strong>Miami</strong>
               <span>AROMASCENT, FL</span>
+=======
+      <div class="s-inner">
+        <div class="story-grid">
+          <div class="story-visual reveal-up">
+            <img
+              src="Aromascents.jpeg"
+              alt="Close view of the AROMASCENT MY WAY bottle label"
+              width="700"
+              height="875"
+              loading="lazy"
+            />
+          </div>
+          <div class="story-copy reveal-up">
+            <p class="eyebrow">The Scent</p>
+            <h2 class="s-title">Hotel lobby warmth,<br />bottled for home.</h2>
+            <p>
+              MY WAY captures the refined atmosphere of 1&nbsp;Hotel®, Miami&nbsp;Beach — a sophisticated blend of leather, sandalwood, and oud wood designed for aroma diffusers.
+            </p>
+            <p>
+              Crafted as a luxury fragrance oil for spaces that deserve more than ordinary scent. Clean, concentrated, and made in the&nbsp;USA.
+            </p>
+            <div class="origin-row">
+              <div class="origin-item">
+                <strong>500ml</strong>
+                <span>16.9 fl. oz.</span>
+              </div>
+              <div class="origin-item">
+                <strong>USA</strong>
+                <span>Made &amp; distributed</span>
+              </div>
+              <div class="origin-item">
+                <strong>Miami</strong>
+                <span>Aromascent, FL</span>
+              </div>
+>>>>>>> Stashed changes
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- NOTES -->
-    <section class="notes" id="notes">
-      <div class="section-inner">
-        <div class="reveal" style="text-align: center; max-width: 36rem; margin: 0 auto;">
-          <p class="eyebrow">Scent profile</p>
-          <h2 class="section-title">Three notes. One atmosphere.</h2>
-          <p class="section-lead" style="margin: 0 auto;">
+    <!-- ════════ SCENT NOTES ════════ -->
+    <section class="notes-section" id="notes">
+      <div class="s-inner">
+        <div class="notes-header reveal-up">
+          <p class="eyebrow">Scent Profile</p>
+          <h2 class="s-title">Three notes.<br />One atmosphere.</h2>
+          <p class="s-lead">
             A composition built for presence — warm, woody, and unmistakably refined.
           </p>
         </div>
         <div class="notes-grid">
-          <article class="note-card reveal">
-            <span class="note-num">01</span>
+          <article class="note-card reveal-up">
+            <span class="note-num">i</span>
             <h3 class="note-name">Leather</h3>
-            <p class="note-desc">Smooth, lived-in warmth that opens the blend with quiet confidence.</p>
+            <div class="note-line"></div>
+            <p class="note-desc">Smooth, lived-in warmth that opens the blend with quiet confidence and depth.</p>
           </article>
-          <article class="note-card reveal">
-            <span class="note-num">02</span>
+          <article class="note-card reveal-up">
+            <span class="note-num">ii</span>
             <h3 class="note-name">Sandalwood</h3>
+            <div class="note-line"></div>
             <p class="note-desc">Creamy wood at the heart — soft, grounding, and endlessly wearable in a room.</p>
           </article>
-          <article class="note-card reveal">
-            <span class="note-num">03</span>
+          <article class="note-card reveal-up">
+            <span class="note-num">iii</span>
             <h3 class="note-name">Oud Wood</h3>
+            <div class="note-line"></div>
             <p class="note-desc">Deep resinous depth that lingers — the signature of a luxury space.</p>
           </article>
         </div>
       </div>
     </section>
 
+<<<<<<< Updated upstream
     <!-- PRODUCTS -->
     <section id="products">
       <div class="section-inner">
@@ -1257,31 +1594,176 @@
               </a>
             </div>
           </article>
+=======
+    <!-- ════════ INGREDIENTS ════════ -->
+    <section class="ingredients-section" id="ingredients">
+      <div class="s-inner">
+        <div class="ingredients-grid">
+          <div class="ingredients-copy reveal-up">
+            <p class="eyebrow">Composition</p>
+            <h2 class="s-title">What goes in.<br />Nothing else.</h2>
+            <p>
+              A minimal formula designed for purity and performance. Every component serves the scent — no fillers, no shortcuts, no compromise.
+            </p>
+            <table class="spec-table">
+              <tr>
+                <td>Ingredients</td>
+                <td>Fragrance (Parfum), Dipropylene Glycol</td>
+              </tr>
+              <tr>
+                <td>Volume</td>
+                <td>500ml / 16.9 fl. oz.</td>
+              </tr>
+              <tr>
+                <td>Use</td>
+                <td>Aroma diffusers only</td>
+              </tr>
+              <tr>
+                <td>Origin</td>
+                <td>Made in USA</td>
+              </tr>
+              <tr>
+                <td>Allergens</td>
+                <td>Contains fragrance allergens</td>
+              </tr>
+            </table>
+          </div>
+          <div class="ingredients-visual reveal-up">
+            <img
+              src="assets/ingredients-editorial.png"
+              alt="Raw fragrance ingredients — leather, sandalwood bark, and oud wood"
+              width="800"
+              height="1000"
+              loading="lazy"
+            />
+          </div>
+>>>>>>> Stashed changes
         </div>
       </div>
     </section>
 
-    <!-- CTA -->
-    <section class="cta-band">
-      <div class="reveal">
+    <!-- ════════ WHY EXPENSIVE ════════ -->
+    <section class="expensive-section" id="editorial">
+      <div class="expensive-inner">
+        <p class="eyebrow reveal-up" style="margin-bottom: 4rem;">Why It Smells Expensive</p>
+
+        <div class="expensive-statement reveal-up">
+          <span class="expensive-num">i</span>
+          <p class="expensive-quote">
+            "Oud wood sourced for depth, not volume. A resin that takes decades to form."
+          </p>
+          <p class="expensive-detail">
+            True oud develops over years inside Aquilaria trees. We source for character, not cost efficiency.
+          </p>
+        </div>
+
+        <div class="expensive-statement reveal-up">
+          <span class="expensive-num">ii</span>
+          <p class="expensive-quote">
+            "Leather that opens with quiet confidence — warm, not aggressive."
+          </p>
+          <p class="expensive-detail">
+            The leather note is built to feel lived-in and refined. It anchors the blend without dominating.
+          </p>
+        </div>
+
+        <div class="expensive-statement reveal-up">
+          <span class="expensive-num">iii</span>
+          <p class="expensive-quote">
+            "A composition built for presence. Rooms remember this scent."
+          </p>
+          <p class="expensive-detail">
+            Formulated for aroma diffusers with a concentration that fills a space slowly and lingers for hours.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ════════ LIFESTYLE ════════ -->
+    <section class="lifestyle-section" id="lifestyle">
+      <div class="lifestyle-image reveal-up" id="lifestyle1">
+        <img
+          src="assets/lifestyle-lobby.png"
+          alt="Luxury hotel lobby with warm ambient lighting and aroma diffuser"
+          width="1600"
+          height="900"
+          loading="lazy"
+        />
+        <div class="lifestyle-caption">
+          <p>Where the scent was born</p>
+          <span>Inspired by 1 Hotel®, Miami Beach</span>
+        </div>
+      </div>
+      <div class="lifestyle-image reveal-up" id="lifestyle2">
+        <img
+          src="assets/lifestyle-living.png"
+          alt="Modern luxury living room with warm minimalist design"
+          width="1600"
+          height="900"
+          loading="lazy"
+        />
+        <div class="lifestyle-caption">
+          <p>Where it belongs</p>
+          <span>Designed for spaces that deserve more</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ════════ REVIEWS ════════ -->
+    <section class="reviews-section" id="reviews">
+      <div class="s-inner">
+        <div class="reviews-header reveal-up">
+          <p class="eyebrow">Impressions</p>
+          <h2 class="s-title">What they noticed first.</h2>
+          <p class="s-lead">
+            Real reactions from people who experienced MY WAY for the first time.
+          </p>
+        </div>
+        <div class="reviews-grid">
+          <div class="review reveal-up">
+            <p class="review-quote">
+              Walked into my living room and it smelled like a five-star hotel. Exactly what I wanted.
+            </p>
+            <p class="review-author">Verified Buyer</p>
+          </div>
+          <div class="review reveal-up">
+            <p class="review-quote">
+              The scent is sophisticated without being overpowering. Guests always ask what it is.
+            </p>
+            <p class="review-author">Verified Buyer</p>
+          </div>
+          <div class="review reveal-up">
+            <p class="review-quote">
+              I've tried dozens of diffuser oils. This is the first one that actually smells expensive.
+            </p>
+            <p class="review-author">Verified Buyer</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ════════ CTA ════════ -->
+    <section class="cta-section" id="cta">
+      <div class="reveal-up">
         <p class="eyebrow">Ready to scent your space</p>
-        <h2 class="section-title">Bring Miami Beach home.</h2>
-        <p class="section-lead">
+        <h2 class="s-title">Bring Miami Beach home.</h2>
+        <p class="s-lead">
           Order MY WAY on Amazon — fast shipping, trusted checkout, luxury fragrance oil delivered to your door.
         </p>
         <a class="btn-amazon" href="#amazon-my-way" id="cta-band" target="_blank" rel="noopener noreferrer">
           <img class="amazon-badge" src="assets/available-at-amazon.png" alt="Available at Amazon" width="150" height="22" loading="lazy" />
-          <span class="amz-chevron" aria-hidden="true">›</span>
+          <span class="amz-arrow" aria-hidden="true">›</span>
         </a>
       </div>
     </section>
   </main>
 
+  <!-- ════════ FOOTER ════════ -->
   <footer>
     <div class="footer-inner">
       <div>
-        <p class="footer-brand">Aromascent</p>
-        <p class="footer-tag">Luxury Fragrance Oils</p>
+        <p class="footer-brand-text">Aromascent</p>
+        <p class="footer-tagline">Luxury Fragrance Oils</p>
       </div>
       <div class="footer-meta">
         <p>Miami, FL 33172</p>
@@ -1293,96 +1775,313 @@
       <span>© <span id="year"></span> AROMASCENT. All rights reserved.</span>
       <span>Independent brand · Shop via Amazon</span>
     </div>
-    <p class="disclaimer">
-      1 Hotel® is a registered trademark of its respective owner. AROMASCENT is not affiliated with, endorsed by, or sponsored by 1 Hotel®. “Inspired by” refers to scent character only. For use in aroma diffusers. Keep away from children and pets. Avoid contact with skin and eyes.
+    <p class="footer-disclaimer">
+      1 Hotel® is a registered trademark of its respective owner. AROMASCENT is not affiliated with, endorsed by, or sponsored by 1 Hotel®. "Inspired by" refers to scent character only. For use in aroma diffusers. Keep away from children and pets. Avoid contact with skin and eyes.
     </p>
   </footer>
 
+  <!-- ═══════════════════════════════════════════
+       SCRIPTS
+       ═══════════════════════════════════════════ -->
   <script>
-    document.getElementById("year").textContent = new Date().getFullYear();
+    /* ── Year ── */
+    document.getElementById('year').textContent = new Date().getFullYear();
 
-    /* Sticky nav */
-    const nav = document.getElementById("nav");
-    const onScroll = () => nav.classList.toggle("scrolled", window.scrollY > 40);
-    window.addEventListener("scroll", onScroll, { passive: true });
-    onScroll();
+    /* ── Sticky Nav ── */
+    const nav = document.getElementById('nav');
+    const handleScroll = () => nav.classList.toggle('scrolled', window.scrollY > 50);
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll();
 
-    /* Scroll reveals */
-    const reveals = document.querySelectorAll(".reveal");
-    if ("IntersectionObserver" in window) {
-      const io = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((e) => {
-            if (e.isIntersecting) {
-              e.target.classList.add("visible");
-              io.unobserve(e.target);
-            }
-          });
-        },
-        { threshold: 0.15, rootMargin: "0px 0px -40px 0px" }
-      );
-      reveals.forEach((el) => io.observe(el));
-    } else {
-      reveals.forEach((el) => el.classList.add("visible"));
-    }
-
-    /*
-     * AMAZON LINKS — replace these with your live Amazon product URLs
-     * Example: "https://www.amazon.com/dp/XXXXXXXXXX"
-     */
-    const AMAZON_LINKS = {
-      myWay: "#amazon-my-way",       // ← paste MY WAY Amazon URL
-      product2: "#amazon-product-2", // ← paste second product Amazon URL
-    };
-
-    function wireAmazon(id, url) {
-      const el = document.getElementById(id);
-      if (!el) return;
-      el.href = url;
-      if (url.startsWith("http")) {
-        el.removeAttribute("aria-disabled");
-        el.style.opacity = "";
-        el.style.pointerEvents = "";
-      }
-    }
-
-    wireAmazon("cta-nav", AMAZON_LINKS.myWay);
-    wireAmazon("cta-hero", AMAZON_LINKS.myWay);
-    wireAmazon("cta-product-1", AMAZON_LINKS.myWay);
-    wireAmazon("cta-band", AMAZON_LINKS.myWay);
-    wireAmazon("cta-product-2", AMAZON_LINKS.product2);
-
-    /* Countdown — resets every midnight (local time) */
-    function pad(n) { return String(n).padStart(2, "0"); }
-
+    /* ── Countdown (resets at midnight) ── */
+    function pad(n) { return String(n).padStart(2, '0'); }
     function nextMidnight() {
       const d = new Date();
       d.setHours(24, 0, 0, 0);
       return d.getTime();
     }
-
     function tickCountdowns() {
       const now = Date.now();
-      let end = nextMidnight();
-      let diff = Math.max(0, end - now);
-      const h = Math.floor(diff / 3600000);
-      diff -= h * 3600000;
-      const m = Math.floor(diff / 60000);
-      diff -= m * 60000;
+      let diff = Math.max(0, nextMidnight() - now);
+      const h = Math.floor(diff / 3600000); diff -= h * 3600000;
+      const m = Math.floor(diff / 60000);    diff -= m * 60000;
       const s = Math.floor(diff / 1000);
-
-      document.querySelectorAll("[data-countdown]").forEach((root) => {
-        const eh = root.querySelector("[data-h]");
-        const em = root.querySelector("[data-m]");
-        const es = root.querySelector("[data-s]");
+      document.querySelectorAll('[data-countdown]').forEach(root => {
+        const eh = root.querySelector('[data-h]');
+        const em = root.querySelector('[data-m]');
+        const es = root.querySelector('[data-s]');
         if (eh) eh.textContent = pad(h);
         if (em) em.textContent = pad(m);
         if (es) es.textContent = pad(s);
       });
     }
-
     tickCountdowns();
     setInterval(tickCountdowns, 1000);
+
+    /* ── Amazon Links ── */
+    const AMAZON_LINKS = {
+      myWay: '#amazon-my-way' // ← paste your Amazon URL here
+    };
+    function wireAmazon(id, url) {
+      const el = document.getElementById(id);
+      if (el) el.href = url;
+    }
+    wireAmazon('cta-nav', AMAZON_LINKS.myWay);
+    wireAmazon('cta-hero', AMAZON_LINKS.myWay);
+    wireAmazon('cta-band', AMAZON_LINKS.myWay);
+
+    /* ── Cursor Glow (hero) ── */
+    const heroVisual = document.getElementById('heroVisual');
+    const cursorGlow = document.getElementById('cursorGlow');
+    let glowActive = false;
+
+    document.addEventListener('mousemove', (e) => {
+      if (!glowActive) {
+        cursorGlow.style.opacity = '1';
+        glowActive = true;
+      }
+      cursorGlow.style.background =
+        `radial-gradient(600px at ${e.clientX}px ${e.clientY}px, rgba(199,161,106,0.035), transparent 70%)`;
+    });
+
+    /* ── Bottle Mouse Parallax ── */
+    const bottleWrap = document.getElementById('bottleWrap');
+    const bottleShadow = document.getElementById('bottleShadow');
+    let bottleRAF;
+
+    if (heroVisual && bottleWrap) {
+      heroVisual.addEventListener('mousemove', (e) => {
+        if (bottleRAF) cancelAnimationFrame(bottleRAF);
+        bottleRAF = requestAnimationFrame(() => {
+          const rect = heroVisual.getBoundingClientRect();
+          const x = ((e.clientX - rect.left) / rect.width - 0.5) * 14;
+          const y = ((e.clientY - rect.top) / rect.height - 0.5) * 10;
+          bottleWrap.style.transform = `translate3d(${x}px, ${y}px, 0)`;
+          if (bottleShadow) {
+            bottleShadow.style.transform = `translateX(calc(-50% + ${x * 0.5}px)) scaleX(${1 - Math.abs(x) * 0.005})`;
+          }
+        });
+      });
+
+      heroVisual.addEventListener('mouseleave', () => {
+        bottleWrap.style.transition = 'transform 0.6s var(--ease)';
+        bottleWrap.style.transform = 'translate3d(0, 0, 0)';
+        if (bottleShadow) {
+          bottleShadow.style.transition = 'transform 0.6s var(--ease)';
+          bottleShadow.style.transform = 'translateX(-50%) scaleX(1)';
+        }
+        setTimeout(() => {
+          bottleWrap.style.transition = '';
+          if (bottleShadow) bottleShadow.style.transition = '';
+        }, 600);
+      });
+    }
+
+    /* ── Hero entrance animation ── */
+    const heroBottle = document.getElementById('heroBottle');
+    window.addEventListener('load', () => {
+      // Animate hero text elements
+      const heroEls = [
+        { el: '.hero-eyebrow',     delay: 100 },
+        { el: '.hero-brand',       delay: 200 },
+        { el: '.hero-product-name', delay: 350 },
+        { el: '.hero-lead',        delay: 500 },
+        { el: '.hero-countdown',   delay: 650 },
+        { el: '.hero-actions',     delay: 800 },
+      ];
+
+      heroEls.forEach(({ el, delay }) => {
+        const elem = document.querySelector(el);
+        if (!elem) return;
+        setTimeout(() => {
+          elem.style.transition = `opacity 0.9s var(--ease), transform 0.9s var(--ease)`;
+          elem.style.opacity = '1';
+          elem.style.transform = 'translateY(0)';
+        }, delay);
+      });
+
+      // Animate bottle
+      if (heroBottle) {
+        setTimeout(() => {
+          heroBottle.style.transition = 'opacity 1.2s var(--ease), transform 1.2s var(--ease)';
+          heroBottle.style.opacity = '1';
+          heroBottle.style.transform = 'translateY(0) scale(1) rotate(0deg)';
+        }, 250);
+
+        // Start floating after entrance
+        setTimeout(() => {
+          heroBottle.style.transition = '';
+          bottleWrap.classList.add('bottle-floating');
+        }, 1800);
+      }
+    });
+
+    /* ── Scroll Reveal (IntersectionObserver fallback) ── */
+    const revealEls = document.querySelectorAll('.reveal-up');
+    if ('IntersectionObserver' in window) {
+      const revealIO = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('visible');
+              revealIO.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.12, rootMargin: '0px 0px -50px 0px' }
+      );
+      revealEls.forEach(el => revealIO.observe(el));
+    } else {
+      revealEls.forEach(el => el.classList.add('visible'));
+    }
+
+    /* ═══════════════════════════════════════════
+       GSAP — Loaded after DOMContentLoaded
+       ═══════════════════════════════════════════ */
+    function initGSAP() {
+      if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
+
+      gsap.registerPlugin(ScrollTrigger);
+
+      // Parallax on story visual
+      const storyImg = document.querySelector('.story-visual img');
+      if (storyImg) {
+        gsap.to(storyImg, {
+          y: -40,
+          ease: 'none',
+          scrollTrigger: {
+            trigger: '.story-visual',
+            start: 'top bottom',
+            end: 'bottom top',
+            scrub: 1,
+          }
+        });
+      }
+
+      // Parallax on lifestyle images
+      document.querySelectorAll('.lifestyle-image img').forEach(img => {
+        gsap.fromTo(img,
+          { y: '-5%' },
+          {
+            y: '5%',
+            ease: 'none',
+            scrollTrigger: {
+              trigger: img.closest('.lifestyle-image'),
+              start: 'top bottom',
+              end: 'bottom top',
+              scrub: 1,
+            }
+          }
+        );
+      });
+
+      // Scale-in for lifestyle images
+      document.querySelectorAll('.lifestyle-image').forEach(wrap => {
+        gsap.from(wrap, {
+          scale: 0.94,
+          opacity: 0,
+          duration: 1.2,
+          ease: 'power2.out',
+          scrollTrigger: {
+            trigger: wrap,
+            start: 'top 85%',
+            toggleActions: 'play none none none',
+          }
+        });
+      });
+
+      // Ingredients visual parallax
+      const ingredientsImg = document.querySelector('.ingredients-visual img');
+      if (ingredientsImg) {
+        gsap.to(ingredientsImg, {
+          y: -30,
+          ease: 'none',
+          scrollTrigger: {
+            trigger: '.ingredients-visual',
+            start: 'top bottom',
+            end: 'bottom top',
+            scrub: 1,
+          }
+        });
+      }
+
+      // Note cards stagger
+      const noteCards = document.querySelectorAll('.note-card');
+      if (noteCards.length) {
+        gsap.from(noteCards, {
+          y: 50,
+          opacity: 0,
+          duration: 0.8,
+          stagger: 0.15,
+          ease: 'power2.out',
+          scrollTrigger: {
+            trigger: '.notes-grid',
+            start: 'top 80%',
+            toggleActions: 'play none none none',
+          }
+        });
+      }
+
+      // Expensive statements stagger
+      const statements = document.querySelectorAll('.expensive-statement');
+      if (statements.length) {
+        gsap.from(statements, {
+          y: 60,
+          opacity: 0,
+          duration: 1,
+          stagger: 0.25,
+          ease: 'power2.out',
+          scrollTrigger: {
+            trigger: '.expensive-section',
+            start: 'top 70%',
+            toggleActions: 'play none none none',
+          }
+        });
+      }
+
+      // Reviews stagger
+      const reviews = document.querySelectorAll('.review');
+      if (reviews.length) {
+        gsap.from(reviews, {
+          y: 40,
+          opacity: 0,
+          duration: 0.8,
+          stagger: 0.2,
+          ease: 'power2.out',
+          scrollTrigger: {
+            trigger: '.reviews-grid',
+            start: 'top 80%',
+            toggleActions: 'play none none none',
+          }
+        });
+      }
+
+      // CTA band
+      const ctaReveal = document.querySelector('.cta-section .reveal-up');
+      if (ctaReveal) {
+        gsap.from(ctaReveal, {
+          y: 40,
+          opacity: 0,
+          duration: 1,
+          ease: 'power2.out',
+          scrollTrigger: {
+            trigger: '.cta-section',
+            start: 'top 80%',
+            toggleActions: 'play none none none',
+          }
+        });
+      }
+    }
+
+    // Wait for GSAP scripts to load
+    if (document.readyState === 'complete') {
+      initGSAP();
+    } else {
+      window.addEventListener('load', () => {
+        // Small delay to ensure GSAP scripts are parsed
+        setTimeout(initGSAP, 100);
+      });
+    }
   </script>
 </body>
 </html>
