@@ -1412,13 +1412,13 @@
             <div class="note-line"></div>
             <p class="note-desc">Smooth, lived-in warmth that opens the blend with quiet confidence and depth.</p>
           </article>
-          <article class="note-card reveal-up">
+          <article class="note-card">
             <span class="note-num">ii</span>
             <h3 class="note-name">Sandalwood</h3>
             <div class="note-line"></div>
             <p class="note-desc">Creamy wood at the heart — soft, grounding, and endlessly wearable in a room.</p>
           </article>
-          <article class="note-card reveal-up">
+          <article class="note-card">
             <span class="note-num">iii</span>
             <h3 class="note-name">Oud Wood</h3>
             <div class="note-line"></div>
@@ -1489,7 +1489,7 @@
           </p>
         </div>
 
-        <div class="expensive-statement reveal-up">
+        <div class="expensive-statement">
           <span class="expensive-num">ii</span>
           <p class="expensive-quote">
             "Leather that opens with quiet confidence — warm, not aggressive."
@@ -1499,7 +1499,7 @@
           </p>
         </div>
 
-        <div class="expensive-statement reveal-up">
+        <div class="expensive-statement">
           <span class="expensive-num">iii</span>
           <p class="expensive-quote">
             "A composition built for presence. Rooms remember this scent."
@@ -1552,19 +1552,19 @@
           </p>
         </div>
         <div class="reviews-grid">
-          <div class="review reveal-up">
+          <div class="review">
             <p class="review-quote">
               Walked into my living room and it smelled like a five-star hotel. Exactly what I wanted.
             </p>
             <p class="review-author">Verified Buyer</p>
           </div>
-          <div class="review reveal-up">
+          <div class="review">
             <p class="review-quote">
               The scent is sophisticated without being overpowering. Guests always ask what it is.
             </p>
             <p class="review-author">Verified Buyer</p>
           </div>
-          <div class="review reveal-up">
+          <div class="review">
             <p class="review-quote">
               I've tried dozens of diffuser oils. This is the first one that actually smells expensive.
             </p>
@@ -1576,7 +1576,7 @@
 
     <!-- ════════ CTA ════════ -->
     <section class="cta-section" id="cta">
-      <div class="reveal-up">
+      <div>
         <p class="eyebrow">Ready to scent your space</p>
         <h2 class="s-title">Bring Miami Beach home.</h2>
         <p class="s-lead">
@@ -1889,7 +1889,7 @@
       }
 
       // CTA band
-      var ctaReveal = document.querySelector('.cta-section .reveal-up');
+      var ctaReveal = document.querySelector('.cta-section > div');
       if (ctaReveal) {
         gsap.from(ctaReveal, {
           y: 40,
