@@ -1,0 +1,638 @@
+/* ===== Lenis Smooth Scroll ===== */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-scrolling iframe {
+  pointer-events: none;
+}
+
+/* ===== Base Styles ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background-color: #F5F0E8;
+  color: #2B4A3E;
+  overflow-x: hidden;
+}
+
+/* ===== Typography ===== */
+.font-heading {
+  font-family: 'Playfair Display', serif;
+}
+
+.font-body {
+  font-family: 'DM Sans', sans-serif;
+}
+
+/* ===== Custom Scrollbar ===== */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #F5F0E8;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #2B4A3E;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #1A3A2A;
+}
+
+/* ===== Hero FRAGRANCE Background Text ===== */
+.fragrance-text {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(80px, 13vw, 210px);
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  color: rgba(197, 205, 182, 0.15);
+  -webkit-text-stroke: 1px rgba(123, 158, 135, 0.4);
+  text-transform: uppercase;
+  position: absolute;
+  top: 85%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  white-space: nowrap;
+  pointer-events: none;
+  user-select: none;
+  z-index: 0;
+  opacity: 0.7;
+}
+
+/* ===== Hero Image Mask ===== */
+.hero-image-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 650px;
+  aspect-ratio: 1 / 1;
+  border-radius: 0 0 50% 50%;
+  overflow: hidden;
+}
+
+.hero-image-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.hero-image-wrapper:hover img {
+  transform: scale(1.05);
+}
+
+/* ===== Star Rating ===== */
+.star-rating {
+  display: flex;
+  gap: 2px;
+}
+
+.star-rating svg {
+  width: 16px;
+  height: 16px;
+  fill: #2B4A3E;
+}
+
+/* ===== Product Cards ===== */
+.product-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 16px;
+  transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+    box-shadow 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.product-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 24px 48px rgba(43, 74, 62, 0.15);
+}
+
+.product-card img {
+  transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.product-card:hover img {
+  transform: scale(1.08);
+}
+
+/* ===== Feature Bullet Points ===== */
+.feature-bullet {
+  position: relative;
+  padding-left: 28px;
+}
+
+.feature-bullet::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 8px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #C5CDB6;
+  border: 2px solid #2B4A3E;
+}
+
+/* ===== Thumbnail Gallery ===== */
+.thumbnail-gallery {
+  display: flex;
+  gap: 12px;
+}
+
+.thumbnail {
+  width: 80px;
+  height: 80px;
+  border-radius: 12px;
+  overflow: hidden;
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: all 0.3s ease;
+}
+
+.thumbnail.active,
+.thumbnail:hover {
+  border-color: #2B4A3E;
+}
+
+.thumbnail img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ===== Testimonial Cards ===== */
+.testimonial-card {
+  background: #fff;
+  border-radius: 16px;
+  padding: 24px;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.testimonial-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 24px rgba(43, 74, 62, 0.1);
+}
+
+.testimonial-avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+/* ===== CTA Buttons ===== */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 32px;
+  background-color: #2B4A3E;
+  color: #fff;
+  border: none;
+  border-radius: 50px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  text-decoration: none;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-primary::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: width 0.6s ease, height 0.6s ease;
+}
+
+.btn-primary:hover::after {
+  width: 300px;
+  height: 300px;
+}
+
+.btn-primary:hover {
+  background-color: #1A3A2A;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(43, 74, 62, 0.3);
+}
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 32px;
+  background-color: #C5CDB6;
+  color: #2B4A3E;
+  border: none;
+  border-radius: 50px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  text-decoration: none;
+}
+
+.btn-secondary:hover {
+  background-color: #b3bc9f;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(197, 205, 182, 0.4);
+}
+
+/* ===== Section Divider Line ===== */
+.section-year {
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  letter-spacing: 0.2em;
+  font-size: 12px;
+  color: #2B4A3E;
+  opacity: 0.5;
+}
+
+/* ===== Subscribe Section Decorative ===== */
+.subscribe-decoration {
+  position: relative;
+}
+
+.subscribe-decoration::before {
+  content: '';
+  position: absolute;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  border: 2px solid #2B4A3E;
+  top: -60px;
+  left: -30px;
+  opacity: 0.2;
+}
+
+/* ===== Animated Underline ===== */
+.nav-link {
+  position: relative;
+  text-decoration: none;
+  color: #2B4A3E;
+  font-weight: 500;
+  font-size: 14px;
+  transition: color 0.3s ease;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 1.5px;
+  background-color: #2B4A3E;
+  transition: width 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
+/* ===== Price Styling ===== */
+.price-current {
+  font-family: 'Playfair Display', serif;
+  font-size: 36px;
+  font-weight: 700;
+  color: #2B4A3E;
+}
+
+.price-original {
+  font-size: 16px;
+  color: #999;
+  text-decoration: line-through;
+  margin-left: 8px;
+}
+
+/* ===== Mobile Menu ===== */
+.mobile-menu-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(43, 74, 62, 0.95);
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 32px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+}
+
+.mobile-menu-overlay.active {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.mobile-menu-overlay a {
+  color: #F5F0E8;
+  font-family: 'Playfair Display', serif;
+  font-size: 28px;
+  text-decoration: none;
+  transition: transform 0.3s ease;
+}
+
+.mobile-menu-overlay a:hover {
+  transform: scale(1.1);
+}
+
+/* ===== Color Selector Dots ===== */
+.color-dot {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: all 0.3s ease;
+}
+
+.color-dot.active,
+.color-dot:hover {
+  border-color: #2B4A3E;
+  transform: scale(1.15);
+}
+
+/* ===== Image Reveal Animation ===== */
+.img-reveal {
+  position: relative;
+  overflow: hidden;
+}
+
+/* ===== Section Number Labels ===== */
+.section-num {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 12px;
+  letter-spacing: 0.3em;
+  color: #2B4A3E;
+  opacity: 0.4;
+}
+
+/* ===== Footer Styles ===== */
+.footer-link {
+  color: #F5F0E8;
+  text-decoration: none;
+  font-size: 14px;
+  transition: opacity 0.3s ease;
+  opacity: 0.7;
+}
+
+.footer-link:hover {
+  opacity: 1;
+}
+
+/* ===== Responsive Adjustments ===== */
+@media (max-width: 768px) {
+  .fragrance-text {
+    font-size: 48px;
+    -webkit-text-stroke: 1px #C5CDB6;
+  }
+
+  .hero-image-wrapper {
+    max-width: 350px;
+  }
+
+  .thumbnail {
+    width: 56px;
+    height: 56px;
+  }
+
+  .price-current {
+    font-size: 28px;
+  }
+}
+
+@media (max-width: 480px) {
+  .fragrance-text {
+    font-size: 36px;
+    letter-spacing: 0.1em;
+  }
+}
+
+/* ===== Loader / Page Transition ===== */
+.page-loader {
+  position: fixed;
+  inset: 0;
+  background: #2B4A3E;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.page-loader .loader-text {
+  font-family: 'Playfair Display', serif;
+  font-size: 32px;
+  color: #F5F0E8;
+  letter-spacing: 0.3em;
+}
+
+/* ===== Magnetic Button Effect ===== */
+.magnetic-btn {
+  transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+
+
+/* ===== Swirl Decoration SVG ===== */
+.swirl-decoration {
+  animation: slowRotate 20s linear infinite;
+}
+
+@keyframes slowRotate {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ===== Marquee Text ===== */
+.marquee-track {
+  display: flex;
+  animation: marquee 30s linear infinite;
+  white-space: nowrap;
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+/* ===== Amazon Buy Buttons ===== */
+.amazon-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px 24px;
+  background: #221f1f;
+  color: #fff;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: opacity 0.3s ease;
+  text-decoration: none;
+}
+
+.amazon-btn svg {
+  height: 24px;
+  width: auto;
+}
+
+.amazon-btn:hover {
+  opacity: 0.85;
+}
+
+/* Small Amazon button for product cards */
+.amazon-btn-sm {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px 36px;
+  background: #221f1f;
+  color: #fff;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: opacity 0.3s ease;
+  text-decoration: none;
+}
+
+.amazon-btn-sm svg {
+  height: 18px;
+  width: auto;
+}
+
+.amazon-btn-sm:hover {
+  opacity: 0.85;
+}
+
+/* ===== Marquee Animation ===== */
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee 30s linear infinite;
+  will-change: transform;
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+
+/* ===== Vertical Marquee Animation ===== */
+.marquee-vertical-up {
+  animation: marquee-up 30s linear infinite;
+  will-change: transform;
+}
+
+.marquee-vertical-down {
+  animation: marquee-down 30s linear infinite;
+  will-change: transform;
+}
+
+@keyframes marquee-up {
+  0% {
+    transform: translateY(0);
+  }
+
+  100% {
+    transform: translateY(-50%);
+  }
+}
+
+@keyframes marquee-down {
+  0% {
+    transform: translateY(-50%);
+  }
+
+  100% {
+    transform: translateY(0);
+  }
+}
+
+/* ===== Unique Hero Animations ===== */
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-15px);
+  }
+
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-float-delayed {
+  animation: float 6s ease-in-out infinite;
+  animation-delay: 3s;
+}
+
+/* Hide Scrollbar */
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+@media (max-width: 1023px) {
+
+  .marquee-vertical-up,
+  .marquee-vertical-down {
+    animation: none !important;
+  }
+}
