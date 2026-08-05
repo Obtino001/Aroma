@@ -649,6 +649,43 @@ document.addEventListener('DOMContentLoaded', () => {
             let newViewers = currentViewers + change;
             if (newViewers < 12) newViewers = 12;
             if (newViewers > 55) newViewers = 55;
+
+
+// ===== CRO Methods JS ===== //
+document.addEventListener('DOMContentLoaded', () => {
+    // 1. Countdown Timer
+    const timerElement = document.getElementById('cro-timer');
+    if (timerElement) {
+        // Start from 4 hours, 59 mins, 59 secs
+        let totalSeconds = 4 * 3600 + 59 * 60 + 59;
+        
+        setInterval(() => {
+            if (totalSeconds <= 0) {
+                totalSeconds = 24 * 3600; // Reset to 24 hours if it hits 0
+            }
+            totalSeconds--;
+            
+            const hours = Math.floor(totalSeconds / 3600);
+            const minutes = Math.floor((totalSeconds % 3600) / 60);
+            const seconds = totalSeconds % 60;
+            
+            timerElement.textContent = 
+                String(hours).padStart(2, '0') + ':' + 
+                String(minutes).padStart(2, '0') + ':' + 
+                String(seconds).padStart(2, '0');
+        }, 1000);
+    }
+
+    // 2. Live Viewers Randomizer
+    const viewerElements = document.querySelectorAll('.cro-viewers');
+    setInterval(() => {
+        viewerElements.forEach(el => {
+            // Fluctuate viewers between 18 and 42
+            const currentViewers = parseInt(el.textContent);
+            const change = Math.floor(Math.random() * 5) - 2; // -2, -1, 0, 1, 2
+            let newViewers = currentViewers + change;
+            if (newViewers < 12) newViewers = 12;
+            if (newViewers > 55) newViewers = 55;
             el.textContent = newViewers;
         });
     }, 5000); // update every 5 seconds
@@ -662,6 +699,22 @@ document.addEventListener('DOMContentLoaded', () => {
             const scrollY = window.scrollY;
             // Move text up slightly as user scrolls down for a 3D parallax feel
             fragranceText.style.transform = `translateX(-50%) translateY(${scrollY * 0.25}px)`;
+        });
+    }
+
+    // ===== Floating Mobile CTA Visibility =====
+    const floatingCTA = document.getElementById('floatingCTA');
+    const heroSection = document.getElementById('home');
+    if (floatingCTA && heroSection) {
+        window.addEventListener('scroll', () => {
+            // Show CTA when user scrolls past the hero section (e.g. 500px down)
+            if (window.scrollY > heroSection.offsetHeight - 100) {
+                floatingCTA.classList.remove('translate-y-full');
+                floatingCTA.classList.add('translate-y-0');
+            } else {
+                floatingCTA.classList.add('translate-y-full');
+                floatingCTA.classList.remove('translate-y-0');
+            }
         });
     }
 });
