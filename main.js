@@ -573,8 +573,11 @@ function initMobileAutoSlide() {
             const maxScroll = slider.scrollWidth - slider.clientWidth;
             if (maxScroll <= 0) return;
             
-            // Scroll by roughly 70vw (the card width)
-            const cardWidth = window.innerWidth * 0.7;
+            // Scroll by the actual width of the first card plus gap
+            let cardWidth = window.innerWidth * 0.7; // default fallback
+            if (slider.firstElementChild) {
+                cardWidth = slider.firstElementChild.offsetWidth + 24; // 24px is roughly the gap
+            }
             
             if (slider.scrollLeft >= maxScroll - 10) {
                 // Reset to beginning smoothly
