@@ -549,11 +549,49 @@ function initParallax() {
     });
 }
 
+// ===== Mobile Auto Slide for Snap Containers =====
+function initMobileAutoSlide() {
+    if (window.innerWidth >= 768) return; // Only run on mobile
+    
+    const sliders = [
+        document.querySelector('#productCards'),
+        document.querySelector('#advantages .overflow-x-auto'),
+        document.querySelector('#testimonialCards .overflow-x-auto')
+    ];
+
+    sliders.forEach(slider => {
+        if (!slider) return;
+        
+        let scrollAmount = 0;
+        let isHovered = false;
+        
+        slider.addEventListener('touchstart', () => isHovered = true);
+        slider.addEventListener('touchend', () => isHovered = false);
+
+        setInterval(() => {
+            if (isHovered) return;
+            const maxScroll = slider.scrollWidth - slider.clientWidth;
+            if (maxScroll <= 0) return;
+            
+            // Scroll by roughly 70vw (the card width)
+            const cardWidth = window.innerWidth * 0.7;
+            
+            if (slider.scrollLeft >= maxScroll - 10) {
+                // Reset to beginning smoothly
+                slider.scrollTo({ left: 0, behavior: 'smooth' });
+            } else {
+                slider.scrollBy({ left: cardWidth, behavior: 'smooth' });
+            }
+        }, 3000); // Auto slide every 3 seconds
+    });
+}
+
 // ===== Initialize Everything on DOM Ready =====
 document.addEventListener('DOMContentLoaded', () => {
     // Start loader
     initLoader();
 
+    initMobileAutoSlide();
 
     initGallery();
     initColorDots();
