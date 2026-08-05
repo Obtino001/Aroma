@@ -613,44 +613,6 @@ document.addEventListener('DOMContentLoaded', () => {
     initParallax();
 });
 
-
-// ===== CRO Methods JS ===== //
-document.addEventListener('DOMContentLoaded', () => {
-    // 1. Countdown Timer
-    const timerElement = document.getElementById('cro-timer');
-    if (timerElement) {
-        // Start from 4 hours, 59 mins, 59 secs
-        let totalSeconds = 4 * 3600 + 59 * 60 + 59;
-        
-        setInterval(() => {
-            if (totalSeconds <= 0) {
-                totalSeconds = 24 * 3600; // Reset to 24 hours if it hits 0
-            }
-            totalSeconds--;
-            
-            const hours = Math.floor(totalSeconds / 3600);
-            const minutes = Math.floor((totalSeconds % 3600) / 60);
-            const seconds = totalSeconds % 60;
-            
-            timerElement.textContent = 
-                String(hours).padStart(2, '0') + ':' + 
-                String(minutes).padStart(2, '0') + ':' + 
-                String(seconds).padStart(2, '0');
-        }, 1000);
-    }
-
-    // 2. Live Viewers Randomizer
-    const viewerElements = document.querySelectorAll('.cro-viewers');
-    setInterval(() => {
-        viewerElements.forEach(el => {
-            // Fluctuate viewers between 18 and 42
-            const currentViewers = parseInt(el.textContent);
-            const change = Math.floor(Math.random() * 5) - 2; // -2, -1, 0, 1, 2
-            let newViewers = currentViewers + change;
-            if (newViewers < 12) newViewers = 12;
-            if (newViewers > 55) newViewers = 55;
-
-
 // ===== CRO Methods JS ===== //
 document.addEventListener('DOMContentLoaded', () => {
     // 1. Countdown Timer
