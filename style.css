@@ -81,6 +81,16 @@ body {
   opacity: 0.7;
 }
 
+@media (max-width: 768px) {
+  .fragrance-text {
+    font-size: 150px;
+    top: 40%;
+    opacity: 0.85;
+    z-index: 1;
+  }
+}
+
+
 /* ===== Hero Image Mask ===== */
 .hero-image-wrapper {
   position: relative;
