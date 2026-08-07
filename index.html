@@ -398,11 +398,13 @@
                         id="productCards">
                         <!-- Card 1: My Way -->
                         <div class="product-card bg-beige group w-full min-w-full md:min-w-0 snap-center">
-                            <div class="relative overflow-hidden rounded-t-2xl transform-gpu isolate h-[320px] bg-[#E8DFD0]">
-                                <img src="images/my_way_bottle_composite.png" alt="AROMASCENT My Way Fragrance Oil"
-                                    class="absolute inset-0 w-full h-[320px] object-cover group-hover:scale-105 transform transition-transform duration-700">
-                                <!-- Exact Label Overlay -->
-                                <img src="images/MY WAY LABEL HD.jpeg" alt="My Way Label" class="absolute z-10 w-[24.5%] top-[54.5%] left-[50%] transform -translate-x-1/2 -translate-y-1/2 opacity-95 rounded-sm mix-blend-normal group-hover:scale-105 transition-transform duration-700 pointer-events-none shadow-sm">
+                            <div class="relative overflow-hidden rounded-t-2xl transform-gpu isolate h-[320px] bg-[#E8DFD0] flex items-center justify-center">
+                                <div class="relative w-full max-w-[320px] aspect-square flex-shrink-0 group-hover:scale-105 transition-transform duration-700">
+                                    <img src="images/my_way_bottle_composite.png" alt="AROMASCENT My Way Fragrance Oil"
+                                        class="absolute inset-0 w-full h-full object-contain">
+                                    <!-- Exact Label Overlay -->
+                                    <img src="images/MY WAY LABEL HD.jpeg" alt="My Way Label" class="absolute z-10 w-[24.5%] top-[54.5%] left-[50%] transform -translate-x-1/2 -translate-y-1/2 opacity-95 rounded-sm mix-blend-normal pointer-events-none shadow-sm">
+                                </div>
                             </div>
                             <div class="p-6">
                                 <h3 class="font-heading text-xl font-bold mb-1">My Way</h3>
@@ -491,11 +493,13 @@
 
                         <!-- Card 2: Escapade -->
                         <div class="product-card bg-beige group w-full min-w-full md:min-w-0 snap-center">
-                            <div class="relative overflow-hidden rounded-t-2xl transform-gpu isolate h-[320px] bg-[#E8DFD0]">
-                                <img src="images/escapade_bottle_composite.png" alt="AROMASCENT Escapade"
-                                    class="absolute inset-0 w-full h-[320px] object-cover group-hover:scale-105 transform transition-transform duration-700">
-                                <!-- Exact Label Overlay -->
-                                <img src="images/ESCAPADE LABEL HD.jpeg" alt="Escapade Label" class="absolute z-10 w-[24.5%] top-[54.5%] left-[50%] transform -translate-x-1/2 -translate-y-1/2 opacity-95 rounded-sm mix-blend-normal group-hover:scale-105 transition-transform duration-700 pointer-events-none shadow-sm">
+                            <div class="relative overflow-hidden rounded-t-2xl transform-gpu isolate h-[320px] bg-[#E8DFD0] flex items-center justify-center">
+                                <div class="relative w-full max-w-[320px] aspect-square flex-shrink-0 group-hover:scale-105 transition-transform duration-700">
+                                    <img src="images/escapade_bottle_composite.png" alt="AROMASCENT Escapade"
+                                        class="absolute inset-0 w-full h-full object-contain">
+                                    <!-- Exact Label Overlay -->
+                                    <img src="images/ESCAPADE LABEL HD.jpeg" alt="Escapade Label" class="absolute z-10 w-[24.5%] top-[54.5%] left-[50%] transform -translate-x-1/2 -translate-y-1/2 opacity-95 rounded-sm mix-blend-normal pointer-events-none shadow-sm">
+                                </div>
                             </div>
                             <div class="p-6">
                                 <h3 class="font-heading text-xl font-bold mb-1">Escapade</h3>
@@ -618,9 +622,17 @@
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
                 <!-- Image Side -->
                 <!-- Image Side -->
-                <div class="relative rounded-3xl overflow-hidden shadow-2xl bg-white group">
-                    <img src="images/Fragrance_oil_bottle_on_shelf_202608052233.jpeg" alt="Pure Luxury Fragrance Oil"
-                        class="w-full h-auto object-cover transition-transform duration-1000 group-hover:scale-105">
+                <div class="relative rounded-3xl overflow-hidden shadow-2xl bg-white group flex items-center justify-center isolate">
+                    <div class="relative w-full aspect-[4/5] md:aspect-square">
+                        <img src="images/premium_diffuser_and_oil.png" alt="Pure Luxury Fragrance Oil"
+                            class="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105">
+                        
+                        <!-- Product Label Overlay (Estimated position) -->
+                        <div class="absolute z-10 w-full h-full inset-0 pointer-events-none transition-transform duration-1000 group-hover:scale-105">
+                            <img src="images/ESCAPADE LABEL HD.jpeg" alt="Escapade Label" 
+                                class="absolute top-[48%] left-[28%] w-[20%] transform -translate-x-1/2 -translate-y-1/2 opacity-95 rounded-sm mix-blend-normal shadow-sm">
+                        </div>
+                    </div>
                 </div>
 
                 <!-- Content Side -->
