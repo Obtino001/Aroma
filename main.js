@@ -283,24 +283,7 @@ function initTestimonialAnimations() {
         });
     });
 
-    // Counter animation for "100,000"
-    const counter = document.getElementById('trustCounter');
-    const counterObj = { value: 0 };
-
-    gsap.to(counterObj, {
-        value: 100000,
-        duration: 2.5,
-        ease: 'power2.out',
-        scrollTrigger: {
-            trigger: counter,
-            start: 'top 80%',
-            toggleActions: 'play none none none',
-            once: true,
-        },
-        onUpdate: () => {
-            counter.textContent = Math.floor(counterObj.value).toLocaleString();
-        },
-    });
+    // Trust counter removed — use static 20,000+ Happy Customers only
 }
 
 // ===== Subscribe Section Animations =====
