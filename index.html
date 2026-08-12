@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -372,10 +372,14 @@
     <!-- ===== PROBLEM / SOLUTION SECTION ===== -->
     <section id="problem-solution" class="py-12 lg:py-24 bg-cream relative border-b border-forest/10">
         <div class="max-w-[1400px] mx-auto px-6">
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <style>
+                .hide-scrollbar::-webkit-scrollbar { display: none; }
+                .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+            </style>
+            <div class="flex md:grid overflow-x-auto md:overflow-visible snap-x snap-mandatory md:snap-none md:grid-cols-2 lg:grid-cols-4 gap-6 pb-6 md:pb-0 -mx-6 px-6 md:mx-0 md:px-0 hide-scrollbar">
                 <!-- Card A -->
                 <div
-                    class="bg-white rounded-[24px] p-8 shadow-sm border border-forest/5 flex flex-col items-start gap-4 hover:-translate-y-1 transition-transform">
+                    class="w-[85vw] max-w-[340px] md:max-w-none md:w-auto flex-none snap-center bg-white rounded-[24px] p-8 shadow-sm border border-forest/5 flex flex-col items-start gap-4 hover:-translate-y-1 transition-transform">
                     <h3 class="font-heading text-xl font-bold text-forest">TIRED OF WEAK, FORGETTABLE HOME FRAGRANCE?
                     </h3>
                     <p class="text-sm text-forest/70 leading-relaxed flex-grow">Use concentrated fragrance oils designed
@@ -387,7 +391,7 @@
 
                 <!-- Card B -->
                 <div
-                    class="bg-white rounded-[24px] p-8 shadow-sm border border-forest/5 flex flex-col items-start gap-4 hover:-translate-y-1 transition-transform">
+                    class="w-[85vw] max-w-[340px] md:max-w-none md:w-auto flex-none snap-center bg-white rounded-[24px] p-8 shadow-sm border border-forest/5 flex flex-col items-start gap-4 hover:-translate-y-1 transition-transform">
                     <h3 class="font-heading text-xl font-bold text-forest">PAYING TOO MUCH FOR FRAGRANCE REFILLS?</h3>
                     <p class="text-sm text-forest/70 leading-relaxed flex-grow">Get premium hotel-inspired scenting with
                         a concentrated formula designed to help maximize every bottle.</p>
@@ -398,7 +402,7 @@
 
                 <!-- Card C -->
                 <div
-                    class="bg-white rounded-[24px] p-8 shadow-sm border border-forest/5 flex flex-col items-start gap-4 hover:-translate-y-1 transition-transform">
+                    class="w-[85vw] max-w-[340px] md:max-w-none md:w-auto flex-none snap-center bg-white rounded-[24px] p-8 shadow-sm border border-forest/5 flex flex-col items-start gap-4 hover:-translate-y-1 transition-transform">
                     <h3 class="font-heading text-xl font-bold text-forest">ALREADY OWN A DIFFUSER?</h3>
                     <p class="text-sm text-forest/70 leading-relaxed flex-grow">Make it easy to determine whether your
                         current home scenting system is compatible before you buy.</p>
@@ -409,7 +413,7 @@
 
                 <!-- Card D -->
                 <div
-                    class="bg-white rounded-[24px] p-8 shadow-sm border border-forest/5 flex flex-col items-start gap-4 hover:-translate-y-1 transition-transform">
+                    class="w-[85vw] max-w-[340px] md:max-w-none md:w-auto flex-none snap-center bg-white rounded-[24px] p-8 shadow-sm border border-forest/5 flex flex-col items-start gap-4 hover:-translate-y-1 transition-transform">
                     <h3 class="font-heading text-xl font-bold text-forest">DON'T KNOW WHICH SCENT TO CHOOSE?</h3>
                     <p class="text-sm text-forest/70 leading-relaxed flex-grow">Shop by mood, fragrance notes and hotel
                         inspiration so you can quickly find the atmosphere you want.</p>
@@ -449,11 +453,17 @@
                         </p>
                     </div>
 
+                    <!-- Swipe Hint (Mobile Only) -->
+                    <div class="flex items-center gap-2 mb-2 md:hidden text-forest/70 ml-2">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                        <span class="text-xs font-bold uppercase tracking-wider">Swipe to explore</span>
+                    </div>
+
                     <!-- Product Cards Grid — 2 Products -->
                     <div class="flex overflow-x-auto md:overflow-visible md:grid md:grid-cols-2 gap-6 md:gap-8 snap-x snap-mandatory hide-scrollbar pb-6 pt-4 -mx-6 px-6 md:mx-0 md:px-0"
                         id="productCards">
                         <!-- Card 1: My Way -->
-                        <div class="product-card bg-beige group w-full min-w-full md:min-w-0 snap-center">
+                        <div class="product-card bg-beige group w-[85vw] max-w-[380px] md:max-w-none md:w-auto flex-none snap-center">
                             <div
                                 class="relative overflow-hidden rounded-t-2xl transform-gpu isolate h-[320px] bg-[#E8DFD0] flex items-center justify-center">
                                 <div
@@ -554,7 +564,7 @@
                         </div>
 
                         <!-- Card 2: Escapade -->
-                        <div class="product-card bg-beige group w-full min-w-full md:min-w-0 snap-center">
+                        <div class="product-card bg-beige group w-[85vw] max-w-[380px] md:max-w-none md:w-auto flex-none snap-center">
                             <div
                                 class="relative overflow-hidden rounded-t-2xl transform-gpu isolate h-[320px] bg-[#E8DFD0] flex items-center justify-center">
                                 <div
