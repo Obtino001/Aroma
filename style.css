@@ -613,12 +613,12 @@ body {
 }
 
 .animate-float {
-  animation: float 6s ease-in-out infinite;
+  animation: float 10s ease-in-out infinite;
 }
 
 .animate-float-delayed {
-  animation: float 6s ease-in-out infinite;
-  animation-delay: 3s;
+  animation: float 10s ease-in-out infinite;
+  animation-delay: 5s;
 }
 
 /* Hide Scrollbar */
