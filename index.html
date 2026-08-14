@@ -1864,10 +1864,7 @@
 
                 <!-- Contact Form -->
                 <div class="bg-white p-8 md:p-10 rounded-2xl shadow-xl">
-                    <form action="https://formsubmit.co/1fc169fb313378c9300d89c305550756" method="POST"
-                        class="flex flex-col gap-5">
-                        <input type="hidden" name="_next" value="https://aroma-eight-eosin.vercel.app/">
-                        <input type="hidden" name="_captcha" value="false">
+                    <form id="contactForm" class="flex flex-col gap-5">
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
                             <div class="flex flex-col gap-2">
                                 <label for="name" class="text-sm font-bold text-forest">Name</label>
@@ -1909,11 +1906,21 @@
                                 class="w-full bg-cream/30 border border-forest/20 rounded-lg px-4 py-3 text-forest focus:outline-none focus:border-forest transition-colors resize-none"
                                 placeholder="Write your message here..."></textarea>
                         </div>
-                        <button type="submit"
-                            class="btn-secondary w-full text-center mt-2 flex justify-center items-center py-4">
-                            Submit Now
+                        <button type="submit" id="submitBtn"
+                            class="btn-secondary w-full text-center mt-2 flex justify-center items-center py-4 relative transition-all duration-300">
+                            <span id="btnText">Submit Now</span>
+                            <svg id="btnLoader" class="hidden w-5 h-5 ml-3 animate-spin text-cream" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                            </svg>
                         </button>
                     </form>
+                    <div id="formSuccess" class="hidden mt-5 p-4 bg-[#C5CDB6]/30 border border-[#C5CDB6] text-forest rounded-lg text-center font-bold">
+                        Thank you for your message! We will get back to you soon.
+                    </div>
+                    <div id="formError" class="hidden mt-5 p-4 bg-red-100 border border-red-300 text-red-700 rounded-lg text-center font-bold">
+                        Oops! Something went wrong. Please try again.
+                    </div>
                 </div>
             </div>
         </div>

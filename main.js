@@ -672,3 +672,53 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 });
+
+// Contact Form Submission Logic
+document.addEventListener('DOMContentLoaded', () => {
+    const contactForm = document.getElementById('contactForm');
+    if (contactForm) {
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const submitBtn = document.getElementById('submitBtn');
+            const btnText = document.getElementById('btnText');
+            const btnLoader = document.getElementById('btnLoader');
+            const formSuccess = document.getElementById('formSuccess');
+            const formError = document.getElementById('formError');
+            
+            // Show loading state
+            submitBtn.disabled = true;
+            btnText.textContent = 'Submitting...';
+            btnLoader.classList.remove('hidden');
+            formSuccess.classList.add('hidden');
+            formError.classList.add('hidden');
+            
+            const formData = new FormData(contactForm);
+            
+            // Note: Replace with the actual deployed Google Apps Script Web App URL
+            const scriptURL = 'https://script.google.com/macros/s/AKfycbzxutxpB7bf63pThVWqAt8S8yPFtdHb4xg4perpcMX0YV4RXvpDodmoyKsfMFd6yqPY/exec';
+            
+            fetch(scriptURL, { method: 'POST', body: formData })
+                .then(response => {
+                    // Reset button
+                    submitBtn.disabled = false;
+                    btnText.textContent = 'Submit Now';
+                    btnLoader.classList.add('hidden');
+                    
+                    // Show success
+                    formSuccess.classList.remove('hidden');
+                    contactForm.reset();
+                })
+                .catch(error => {
+                    // Reset button
+                    submitBtn.disabled = false;
+                    btnText.textContent = 'Submit Now';
+                    btnLoader.classList.add('hidden');
+                    
+                    // Show error
+                    formError.classList.remove('hidden');
+                    console.error('Error!', error.message);
+                });
+        });
+    }
+});
