@@ -344,13 +344,22 @@ function initFooterAnimations() {
 // ===== Thumbnail Gallery Interaction =====
 function initGallery() {
     const thumbnails = document.querySelectorAll('.thumbnail');
-    const mainImg = document.getElementById('mainGalleryImg');
 
     thumbnails.forEach(thumb => {
         thumb.addEventListener('click', () => {
-            // Remove active from all
-            thumbnails.forEach(t => t.classList.remove('active'));
+            // Remove active from siblings in the same gallery
+            const gallery = thumb.closest('.thumbnail-gallery');
+            if (gallery) {
+                gallery.querySelectorAll('.thumbnail').forEach(t => t.classList.remove('active'));
+            } else {
+                thumbnails.forEach(t => t.classList.remove('active'));
+            }
             thumb.classList.add('active');
+
+            // Find the correct main image to update
+            const targetId = thumb.dataset.target || 'mainGalleryImg';
+            const mainImg = document.getElementById(targetId);
+            if (!mainImg) return;
 
             // Animate main image swap
             const newSrc = thumb.dataset.img;
