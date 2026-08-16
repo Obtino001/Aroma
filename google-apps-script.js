@@ -6,13 +6,13 @@ function doPost(e) {
     }
 
     let data = e.parameter;
-    
+
     // The form on index.html sends: name, email, phone, order_number, subject, message
     let sheetName = sheet.getSheetByName("Contact Submissions");
-    
+
     if (!sheetName) {
-        sheetName = sheet.insertSheet("Contact Submissions"); 
-        
+        sheetName = sheet.insertSheet("Contact Submissions");
+
         // Append headers
         sheetName.appendRow([
             "Timestamp", "Name", "Email", "Phone", "Order Number", "Subject", "Message"
@@ -22,11 +22,11 @@ function doPost(e) {
     // Save form data
     sheetName.appendRow([
         new Date(),
-        data.name || "", 
-        data.email || "", 
-        data.phone || "", 
+        data.name || "",
+        data.email || "",
+        data.phone || "",
         data.order_number || "",
-        data.subject || "", 
+        data.subject || "",
         data.message || ""
     ]);
 
@@ -34,7 +34,7 @@ function doPost(e) {
     // Email Notification Logic
     // =========================
 
-    var recipients = ["enter.aleph@gmail.com", "devyasi001@gmail.com"];
+    var recipients = ["enter.aleph@gmail.com", "devyasir001@gmail.com"];
 
     // Email Subject and Body
     var subject = "New Contact Form Submission: " + (data.subject || "No Subject");
@@ -53,6 +53,6 @@ function doPost(e) {
     }
 
     // Return a JSON response for AJAX
-    return ContentService.createTextOutput(JSON.stringify({"result":"success", "data": "Data Saved Successfully"}))
+    return ContentService.createTextOutput(JSON.stringify({ "result": "success", "data": "Data Saved Successfully" }))
         .setMimeType(ContentService.MimeType.JSON);
 }
